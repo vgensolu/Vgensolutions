@@ -3043,7 +3043,7 @@
       });
     });
 
-    // Contact form
+    // Contact form with Google Form integration
     document.getElementById('contact-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = e.target.querySelector('button[type="submit"]');
@@ -3051,6 +3051,7 @@
       submitBtn.textContent = 'Submitting...';
       submitBtn.disabled = true;
       
+      // Collect form field values
       const name = document.getElementById('contact-name').value;
       const email = document.getElementById('contact-email').value;
       const phone = document.getElementById('contact-phone').value;
@@ -3059,6 +3060,46 @@
       const time = document.getElementById('contact-time').value;
       const message = document.getElementById('contact-message').value;
       
+      // --- GOOGLE FORM INTEGRATION START ---
+      // Google Form URL and field mapping:
+      // Form URL: https://docs.google.com/forms/d/e/1FAIpQLSehMhKyCrkKhsXtEQApd5maPeOI_CuN_QvbjOvZWbDZ5wbf9w/formResponse
+      // Field mapping (entry.XXXX = Form Field):
+      //   entry.1536629193 = Name
+      //   entry.1665978372 = Email
+      //   entry.878788016 = Phone
+      //   entry.240704227 = Service Interested In
+      //   entry.685366266 = Date
+      //   entry.79092531 = Time
+      //   entry.2060262173 = Message
+      
+      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSehMhKyCrkKhsXtEQApd5maPeOI_CuN_QvbjOvZWbDZ5wbf9w/formResponse';
+      
+      // Create FormData object with the correct entry IDs
+      const formData = new FormData();
+      formData.append('entry.1536629193', name);
+      formData.append('entry.1665978372', email);
+      formData.append('entry.878788016', phone);
+      formData.append('entry.240704227', service);
+      formData.append('entry.685366266', date || '');
+      formData.append('entry.79092531', time || '');
+      formData.append('entry.2060262173', message);
+      
+      // Submit to Google Form in the background using 'no-cors' mode
+      // Note: 'no-cors' mode prevents reading the response, but the form submission will succeed
+      try {
+        await fetch(googleFormUrl, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // Required to bypass CORS restrictions
+        });
+        // Google Form submission successful (we can't check response due to no-cors)
+      } catch (error) {
+        console.error('Google Form submission error:', error);
+        // Continue even if Google Form fails
+      }
+      // --- GOOGLE FORM INTEGRATION END ---
+      
+      // Also submit to DataSDK if available (existing functionality)
       if (window.dataSdk) {
         const result = await window.dataSdk.create({
           type: 'inquiry',
@@ -3082,6 +3123,7 @@
         }
       }
       
+      // Show success message to user
       submitBtn.textContent = 'Submitted Successfully!';
       setTimeout(() => {
         whatsappWindow.classList.remove('active');
