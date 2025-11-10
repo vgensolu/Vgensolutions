@@ -2888,6 +2888,7 @@
       submitBtn.textContent = 'Submitting...';
       submitBtn.disabled = true;
       
+      // Collect form field values
       const name = document.getElementById('applicant-name').value;
       const email = document.getElementById('applicant-email').value;
       const phone = document.getElementById('applicant-phone').value;
@@ -2896,7 +2897,78 @@
       const message = document.getElementById('applicant-message').value;
       const position = applicationTitle.textContent.replace('Apply for ', '');
       
+      // Debug: Log collected values to console
+      console.log('=== APPLICATION FORM SUBMISSION ===');
+      console.log('Name:', name);
+      console.log('Email:', email);
+      console.log('Phone:', phone);
+      console.log('Experience:', experience);
+      console.log('Portfolio:', portfolio);
+      console.log('Message:', message);
+      console.log('Position:', position);
+      console.log('===================================');
+      
+      // Validate required fields
+      if (!name || !email || !phone || !experience || !message) {
+        alert('Please fill in all required fields (Name, Email, Phone, Experience, and Message).');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        return;
+      }
+      
+      // --- GOOGLE FORM INTEGRATION START ---
+      // Google Form URL and field mapping:
+      // Form URL: https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse
+      // Field mapping (entry.XXXX = Form Field):
+      //   entry.XXXXXXXX = Name
+      //   entry.XXXXXXXX = Email
+      //   entry.XXXXXXXX = Phone
+      //   entry.XXXXXXXX = Experience
+      //   entry.XXXXXXXX = Portfolio
+      //   entry.XXXXXXXX = Message
+      //   entry.XXXXXXXX = Position
+      // TODO: Replace with actual Google Form URL and entry codes once form is created
+      
+      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdApplicationFormID/formResponse';
+      
+      // Create FormData object with the correct entry IDs
+      const formData = new FormData();
+      formData.append('entry.000000001', name);
+      formData.append('entry.000000002', email);
+      formData.append('entry.000000003', phone);
+      formData.append('entry.000000004', experience);
+      formData.append('entry.000000005', portfolio || 'Not provided');
+      formData.append('entry.000000006', message);
+      formData.append('entry.000000007', position);
+      
+      // Debug: Log formData entries
+      console.log('=== GOOGLE FORM DATA ===');
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+      console.log('========================');
+      
+      // Submit to Google Form in the background using 'no-cors' mode
+      // Note: 'no-cors' mode prevents reading the response, but the form submission will succeed
+      // Uncomment when actual Google Form URL is configured
+      /*
+      try {
+        await fetch(googleFormUrl, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // Required to bypass CORS restrictions
+        });
+        console.log('Google Form submission completed');
+      } catch (error) {
+        console.error('Google Form submission error:', error);
+        // Continue even if Google Form fails
+      }
+      */
+      // --- GOOGLE FORM INTEGRATION END ---
+      
+      // Also submit to DataSDK if available (existing functionality)
       if (window.dataSdk) {
+        console.log('Submitting to DataSDK...');
         const result = await window.dataSdk.create({
           type: 'application',
           name: name,
@@ -2910,6 +2982,7 @@
         });
         
         if (!result.isOk) {
+          console.error('DataSDK submission failed:', result);
           submitBtn.textContent = 'Error - Try Again';
           submitBtn.disabled = false;
           setTimeout(() => {
@@ -2917,6 +2990,7 @@
           }, 2000);
           return;
         }
+        console.log('DataSDK submission successful');
       }
       
       applicationForm.style.display = 'none';
@@ -3060,6 +3134,25 @@
       const time = document.getElementById('contact-time').value;
       const message = document.getElementById('contact-message').value;
       
+      // Debug: Log collected values to console
+      console.log('=== CONTACT FORM SUBMISSION ===');
+      console.log('Name:', name);
+      console.log('Email:', email);
+      console.log('Phone:', phone);
+      console.log('Service:', service);
+      console.log('Date:', date);
+      console.log('Time:', time);
+      console.log('Message:', message);
+      console.log('================================');
+      
+      // Validate required fields
+      if (!name || !email || !phone || !service || !message) {
+        alert('Please fill in all required fields (Name, Email, Phone, Service, and Message).');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        return;
+      }
+      
       // --- GOOGLE FORM INTEGRATION START ---
       // Google Form URL and field mapping:
       // Form URL: https://docs.google.com/forms/d/e/1FAIpQLSehMhKyCrkKhsXtEQApd5maPeOI_CuN_QvbjOvZWbDZ5wbf9w/formResponse
@@ -3080,9 +3173,16 @@
       formData.append('entry.1665978372', email);
       formData.append('entry.878788016', phone);
       formData.append('entry.240704227', service);
-      formData.append('entry.685366266', date || '');
-      formData.append('entry.79092531', time || '');
+      formData.append('entry.685366266', date || 'Not specified');
+      formData.append('entry.79092531', time || 'Not specified');
       formData.append('entry.2060262173', message);
+      
+      // Debug: Log formData entries
+      console.log('=== GOOGLE FORM DATA ===');
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+      console.log('========================');
       
       // Submit to Google Form in the background using 'no-cors' mode
       // Note: 'no-cors' mode prevents reading the response, but the form submission will succeed
@@ -3092,6 +3192,7 @@
           body: formData,
           mode: 'no-cors' // Required to bypass CORS restrictions
         });
+        console.log('Google Form submission completed');
         // Google Form submission successful (we can't check response due to no-cors)
       } catch (error) {
         console.error('Google Form submission error:', error);
@@ -3101,6 +3202,7 @@
       
       // Also submit to DataSDK if available (existing functionality)
       if (window.dataSdk) {
+        console.log('Submitting to DataSDK...');
         const result = await window.dataSdk.create({
           type: 'inquiry',
           inquiry_name: name,
@@ -3114,6 +3216,7 @@
         });
         
         if (!result.isOk) {
+          console.error('DataSDK submission failed:', result);
           submitBtn.textContent = 'Error - Try Again';
           submitBtn.disabled = false;
           setTimeout(() => {
@@ -3121,6 +3224,7 @@
           }, 2000);
           return;
         }
+        console.log('DataSDK submission successful');
       }
       
       // Show success message to user
