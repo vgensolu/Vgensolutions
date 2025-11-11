@@ -1426,11 +1426,13 @@
       z-index: 2400;
       opacity: 0;
       transition: opacity 0.3s ease;
+      pointer-events: none;
     }
 
     .whatsapp-backdrop.active {
       display: block;
       opacity: 1;
+      pointer-events: auto;
     }
 
     /* WhatsApp Widget */
@@ -1552,7 +1554,8 @@
       overflow: hidden;
       opacity: 0;
       transition: opacity 0.3s ease, transform 0.3s ease;
-      z-index: 2500;
+      z-index: 2501;
+      pointer-events: auto;
     }
 
     .whatsapp-window.active {
@@ -1561,6 +1564,7 @@
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
       animation: popupFromIcon 0.4s ease-out;
+      pointer-events: auto;
     }
 
     @keyframes popupFromIcon {
@@ -2987,18 +2991,24 @@
     const whatsappClose = document.getElementById('whatsapp-close');
     const whatsappBackdrop = document.getElementById('whatsapp-backdrop');
     
+    let scrollPosition = 0;
+    
     whatsappButton.addEventListener('click', () => {
       const isActive = whatsappWindow.classList.toggle('active');
       if (isActive) {
+        // Save current scroll position
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
         whatsappBackdrop.classList.add('active');
         document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
+        document.body.style.paddingRight = '0px'; // Prevent layout shift
       } else {
         whatsappBackdrop.classList.remove('active');
         document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
+        document.body.style.paddingRight = '';
+        
+        // Restore scroll position
+        window.scrollTo(0, scrollPosition);
       }
     });
 
@@ -3007,8 +3017,10 @@
       whatsappWindow.classList.remove('active');
       whatsappBackdrop.classList.remove('active');
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.paddingRight = '';
+      
+      // Restore scroll position
+      window.scrollTo(0, scrollPosition);
     });
 
     // Close on backdrop click
@@ -3016,17 +3028,22 @@
       whatsappWindow.classList.remove('active');
       whatsappBackdrop.classList.remove('active');
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.paddingRight = '';
+      
+      // Restore scroll position
+      window.scrollTo(0, scrollPosition);
     });
 
     // Open contact form function
     function openContactForm() {
+      // Save current scroll position
+      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      
       whatsappWindow.classList.add('active');
       whatsappBackdrop.classList.add('active');
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      document.body.style.paddingRight = '0px';
+      
       // Switch to contact tab
       document.querySelectorAll('.whatsapp-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.whatsapp-tab-content').forEach(c => c.classList.remove('active'));
@@ -3168,6 +3185,13 @@
       submitBtn.textContent = 'Submitted Successfully!';
       setTimeout(() => {
         whatsappWindow.classList.remove('active');
+        whatsappBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        
+        // Restore scroll position
+        window.scrollTo(0, scrollPosition);
+        
         e.target.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
