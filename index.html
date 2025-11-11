@@ -493,7 +493,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       z-index: 2000;
       padding: 2rem;
       overflow-y: auto;
@@ -1422,7 +1424,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       z-index: 2400;
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -1440,7 +1444,7 @@
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      z-index: 1500;
+      z-index: 2600;
     }
 
     .whatsapp-button {
