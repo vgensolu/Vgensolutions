@@ -1432,7 +1432,7 @@
     .whatsapp-backdrop.active {
       display: block;
       opacity: 1;
-      pointer-events: auto;
+      pointer-events: none;
     }
 
     /* WhatsApp Widget */
@@ -3024,14 +3024,22 @@
     });
 
     // Close on backdrop click
-    whatsappBackdrop.addEventListener('click', () => {
-      whatsappWindow.classList.remove('active');
-      whatsappBackdrop.classList.remove('active');
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-      
-      // Restore scroll position
-      window.scrollTo(0, scrollPosition);
+    document.addEventListener('click', (e) => {
+      // Only close if backdrop is active and click is outside the window
+      if (whatsappBackdrop.classList.contains('active')) {
+        const isClickInsideWindow = whatsappWindow.contains(e.target);
+        const isWhatsappButton = whatsappButton.contains(e.target);
+        
+        if (!isClickInsideWindow && !isWhatsappButton) {
+          whatsappWindow.classList.remove('active');
+          whatsappBackdrop.classList.remove('active');
+          document.body.style.overflow = '';
+          document.body.style.paddingRight = '';
+          
+          // Restore scroll position
+          window.scrollTo(0, scrollPosition);
+        }
+      }
     });
 
     // Open contact form function
