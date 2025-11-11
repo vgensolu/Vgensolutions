@@ -1,0 +1,14 @@
+# Video background files (can be large, consider hosting externally)
+# Uncomment the lines below if you want to exclude video files from git
+# background-video.mp4
+# background-video.webm
+# *.mp4
+# *.webm
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
