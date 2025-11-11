@@ -10,6 +10,12 @@
   <style>
     :root {
       --vgensolutions-primary: #daa520;
+      --vgensolutions-secondary: #b8860b;
+      --vgensolutions-highlight: #ffd700;
+      --vgensolutions-accent: #14b8a6;
+      --vgensolutions-accent-dark: #0d9488;
+      --vgensolutions-bg: #0a0a0a;
+      --vgensolutions-text: #f5e6d3;
     }
 
     * {
@@ -306,21 +312,39 @@
     .cta-button {
       display: inline-block;
       padding: 1rem 2.5rem;
-      background: linear-gradient(135deg, #daa520, #b8860b);
-      color: #000000;
+      background: linear-gradient(135deg, var(--vgensolutions-accent), var(--vgensolutions-accent-dark));
+      color: #ffffff;
       text-decoration: none;
       border-radius: 50px;
       font-weight: 600;
       font-size: 1.1rem;
       transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
+      box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
       border: none;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--vgensolutions-primary), var(--vgensolutions-secondary));
+      transition: left 0.4s ease;
+      z-index: -1;
     }
 
     .cta-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(218, 165, 32, 0.6);
+      box-shadow: 0 15px 40px rgba(20, 184, 166, 0.6);
+    }
+
+    .cta-button:hover::before {
+      left: 0;
     }
 
     /* Feature Badges */
@@ -914,8 +938,8 @@
     .apply-button {
       width: 100%;
       padding: 0.75rem;
-      background: linear-gradient(135deg, #daa520, #b8860b);
-      color: #000000;
+      background: linear-gradient(135deg, var(--vgensolutions-accent), var(--vgensolutions-accent-dark));
+      color: #ffffff;
       border: none;
       border-radius: 50px;
       font-weight: 600;
@@ -923,12 +947,12 @@
       transition: all 0.3s ease;
       position: relative;
       z-index: 1;
-      box-shadow: 0 5px 20px rgba(218, 165, 32, 0.3);
+      box-shadow: 0 5px 20px rgba(20, 184, 166, 0.3);
     }
 
     .apply-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+      box-shadow: 0 8px 25px rgba(20, 184, 166, 0.5);
     }
 
     /* AI Insights Section */
@@ -1788,9 +1812,9 @@
     .whatsapp-window button[type="submit"] {
       width: 100%;
       padding: 0.85rem;
-      background: linear-gradient(135deg, #daa520, #b8860b);
-      color: #000000;
-      border: 2px solid rgba(218, 165, 32, 0.3);
+      background: linear-gradient(135deg, var(--vgensolutions-accent), var(--vgensolutions-accent-dark));
+      color: #ffffff;
+      border: 2px solid rgba(20, 184, 166, 0.3);
       border-radius: 10px;
       font-weight: 600;
       cursor: pointer;
@@ -1802,6 +1826,7 @@
     .whatsapp-window button[type="submit"]:hover {
       opacity: 0.9;
       transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(20, 184, 166, 0.4);
     }
 
     /* Scroll to Top */
