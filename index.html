@@ -1611,6 +1611,7 @@
     .whatsapp-body {
       padding: 1.5rem;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       flex: 1;
       max-height: 400px;
     }
@@ -2990,9 +2991,13 @@
       if (isActive) {
         whatsappBackdrop.classList.add('active');
         document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
       } else {
         whatsappBackdrop.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
       }
     });
 
@@ -3001,6 +3006,8 @@
       whatsappWindow.classList.remove('active');
       whatsappBackdrop.classList.remove('active');
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     });
 
     // Close on backdrop click
@@ -3008,6 +3015,8 @@
       whatsappWindow.classList.remove('active');
       whatsappBackdrop.classList.remove('active');
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     });
 
     // Open contact form function
@@ -3015,6 +3024,8 @@
       whatsappWindow.classList.add('active');
       whatsappBackdrop.classList.add('active');
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
       // Switch to contact tab
       document.querySelectorAll('.whatsapp-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.whatsapp-tab-content').forEach(c => c.classList.remove('active'));
