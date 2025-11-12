@@ -489,7 +489,7 @@
 
     /* Brand-specific colors removed - all items now use theme colors */
 
-    /* Services Section - Carousel */
+    /* Services Section - Grid */
     .services {
       padding: 4rem 2rem;
       max-width: 1400px;
@@ -509,18 +509,11 @@
       margin-bottom: 3rem;
     }
 
-    .services-carousel-container {
-      position: relative;
-      overflow: hidden;
-      padding: 2rem 0;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .services-carousel {
-      display: flex;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
+      margin-top: 2rem;
     }
 
     .service-card {
@@ -532,10 +525,25 @@
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       overflow: hidden;
-      min-width: 100%;
-      flex-shrink: 0;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .service-card::before {
@@ -561,7 +569,7 @@
 
     .service-image {
       width: 100%;
-      height: 500px;
+      height: 200px;
       object-fit: cover;
       border-radius: 12px;
       margin-bottom: 1.5rem;
@@ -573,13 +581,6 @@
       transform: scale(1.03);
       border-color: rgba(218, 165, 32, 0.6);
       box-shadow: 0 12px 32px rgba(218, 165, 32, 0.3);
-    }
-
-    .service-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--vgensolutions-primary);
-      display: block;
     }
 
     .service-title {
@@ -605,102 +606,19 @@
       font-size: 1rem;
     }
 
-    /* Carousel Navigation - Side Buttons */
-    .carousel-nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
-    }
-
-    .carousel-btn {
-      background: linear-gradient(135deg, #daa520, #b8860b);
-      color: #000000;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-    }
-    
-    .carousel-btn#carousel-prev {
-      left: -80px;
-    }
-    
-    .carousel-btn#carousel-next {
-      right: -80px;
-    }
-
-    .carousel-btn:hover {
-      transform: translateY(-50%) scale(1.15);
-      box-shadow: 0 6px 20px rgba(218, 165, 32, 0.6);
-    }
-
-    .carousel-btn:active {
-      transform: translateY(-50%) scale(1);
-    }
-
-    .carousel-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-    
-    .carousel-btn:disabled:hover {
-      transform: translateY(-50%) scale(1);
-    }
-
-    .carousel-dots {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      margin: 0 auto;
-    }
-
-    .carousel-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(218, 165, 32, 0.3);
-      border: 2px solid rgba(218, 165, 32, 0.5);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .carousel-dot.active {
-      background: linear-gradient(135deg, #ffd700, #daa520);
-      transform: scale(1.3);
-      box-shadow: 0 0 12px rgba(218, 165, 32, 0.6);
-    }
-
-    .carousel-dot:hover {
-      background: rgba(218, 165, 32, 0.6);
-    }
-
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      .services-carousel-container {
-        padding: 2rem 0;
-        max-width: 100%;
-        margin: 0 auto;
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
       
       .service-image {
-        height: 400px;
+        height: 180px;
       }
       
       .service-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
       }
       
       .service-description {
@@ -710,25 +628,17 @@
       .service-card {
         padding: 1.25rem;
       }
-      
-      .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-      }
-      
-      .carousel-btn#carousel-prev {
-        left: 10px;
-      }
-      
-      .carousel-btn#carousel-next {
-        right: 10px;
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     
     @media (min-width: 1200px) {
-      .services-carousel-container {
-        max-width: 550px;
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -1099,12 +1009,6 @@
       border-color: rgba(218, 165, 32, 0.8);
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 12px 30px rgba(218, 165, 32, 0.3);
-    }
-
-    .ai-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--vgensolutions-primary);
     }
 
     .ai-title {
@@ -2220,16 +2124,7 @@
   </div><!-- Services Section -->
   <section class="services" id="services">
    <h2 class="section-title">Our Services</h2>
-   <div style="position: relative; max-width: 1000px; margin: 0 auto;">
-    <div class="services-carousel-container">
-     <div class="services-carousel" id="services-carousel"></div>
-    </div>
-    <button class="carousel-btn" id="carousel-prev" aria-label="Previous service">‹</button>
-    <button class="carousel-btn" id="carousel-next" aria-label="Next service">›</button>
-   </div>
-   <div class="carousel-nav">
-    <div class="carousel-dots" id="carousel-dots"></div>
-   </div>
+   <div class="services-grid" id="services-grid"></div>
   </section><!-- Strategy Section -->
   <section class="strategy" id="strategy">
    <h2 class="section-title">Our Strategy</h2>
@@ -2306,32 +2201,26 @@
    <p style="text-align: center; color: #d4c5b0; font-size: 1.1rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Artificial Intelligence is revolutionizing how businesses operate. Here's what you need to know to stay ahead.</p>
    <div class="ai-grid">
     <div class="ai-card">
-     <span class="ai-icon">🤖</span>
      <h3 class="ai-title">Automate Repetitive Tasks</h3>
      <p class="ai-description">Free up your team's time by automating data entry, customer responses, and routine workflows. AI handles the mundane so you can focus on growth.</p>
     </div>
     <div class="ai-card">
-     <span class="ai-icon">📊</span>
      <h3 class="ai-title">Data-Driven Decisions</h3>
      <p class="ai-description">AI analyzes customer behavior, market trends, and performance metrics to provide actionable insights that drive smarter business decisions.</p>
     </div>
     <div class="ai-card">
-     <span class="ai-icon">✍️</span>
      <h3 class="ai-title">Content at Scale</h3>
      <p class="ai-description">Generate high-quality blog posts, social media content, and marketing copy in minutes. Maintain consistency while scaling your content production.</p>
     </div>
     <div class="ai-card">
-     <span class="ai-icon">💬</span>
      <h3 class="ai-title">24/7 Customer Support</h3>
      <p class="ai-description">AI-powered chatbots provide instant responses to customer inquiries around the clock, improving satisfaction and reducing support costs.</p>
     </div>
     <div class="ai-card">
-     <span class="ai-icon">🎯</span>
      <h3 class="ai-title">Personalization</h3>
      <p class="ai-description">Deliver personalized experiences to each customer based on their behavior, preferences, and history. Increase engagement and conversions.</p>
     </div>
     <div class="ai-card">
-     <span class="ai-icon">🚀</span>
      <h3 class="ai-title">Competitive Edge</h3>
      <p class="ai-description">Stay ahead of competitors by adopting AI early. Businesses using AI see 30-40% efficiency gains and faster time-to-market.</p>
     </div>
@@ -3015,85 +2904,20 @@
       careersGrid.appendChild(card);
     });
 
-    // Generate services carousel
-    const servicesCarousel = document.getElementById('services-carousel');
-    const carouselDots = document.getElementById('carousel-dots');
-    let currentSlide = 0;
+    // Generate services grid
+    const servicesGrid = document.getElementById('services-grid');
     
     services.forEach((service, index) => {
       const card = document.createElement('div');
       card.className = 'service-card';
       card.innerHTML = `
-        <span class="service-icon">${service.icon}</span>
         <img src="${service.image}" alt="${service.title}" class="service-image" loading="lazy">
         <h3 class="service-title">${service.title}</h3>
         <p class="service-description">${service.description}</p>
       `;
       card.addEventListener('click', () => openModal(service));
-      servicesCarousel.appendChild(card);
-      
-      // Create carousel dot
-      const dot = document.createElement('div');
-      dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
-      dot.addEventListener('click', () => goToSlide(index));
-      carouselDots.appendChild(dot);
+      servicesGrid.appendChild(card);
     });
-    
-    // Carousel navigation functions
-    function goToSlide(index) {
-      currentSlide = index;
-      servicesCarousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-      updateDots();
-      updateButtons();
-    }
-    
-    function updateDots() {
-      document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-      });
-    }
-    
-    function updateButtons() {
-      document.getElementById('carousel-prev').disabled = currentSlide === 0;
-      document.getElementById('carousel-next').disabled = currentSlide === services.length - 1;
-    }
-    
-    document.getElementById('carousel-prev').addEventListener('click', () => {
-      if (currentSlide > 0) {
-        goToSlide(currentSlide - 1);
-      }
-    });
-    
-    document.getElementById('carousel-next').addEventListener('click', () => {
-      if (currentSlide < services.length - 1) {
-        goToSlide(currentSlide + 1);
-      }
-    });
-    
-    // Touch swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    servicesCarousel.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    servicesCarousel.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-    
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50 && currentSlide < services.length - 1) {
-        goToSlide(currentSlide + 1);
-      }
-      if (touchEndX > touchStartX + 50 && currentSlide > 0) {
-        goToSlide(currentSlide - 1);
-      }
-    }
-    
-    // Initialize
-    updateButtons();
 
     // Application Modal functionality
     const applicationModal = document.getElementById('application-modal');
