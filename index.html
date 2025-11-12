@@ -2913,9 +2913,9 @@
       //   entry.1726115079 = Full Name
       //   entry.966862296 = Email
       //   entry.1797095609 = Phone Number
+      //   entry.1924816270 = Years of Experience
       //   entry.1606250656 = Portfolio/LinkedIn URL
       //   entry.1067313301 = Why do you want to join us (Message)
-      // Note: Experience field not mapped as it's not in the Google Form
       
       const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSej5KPWilge3LU6maDmlv4Udt5nsDmK2-uI2Papd6Qp4PQTAQ/formResponse';
       
@@ -2925,6 +2925,7 @@
       formData.append('entry.1726115079', name); // Full Name
       formData.append('entry.966862296', email); // Email
       formData.append('entry.1797095609', phone); // Phone Number
+      formData.append('entry.1924816270', experience); // Years of Experience
       formData.append('entry.1606250656', portfolio || 'Not provided'); // Portfolio/LinkedIn URL
       formData.append('entry.1067313301', message); // Why do you want to join us
       
