@@ -2926,28 +2926,26 @@
       
       // --- GOOGLE FORM INTEGRATION START ---
       // Google Form URL and field mapping:
-      // Form URL: https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse
+      // Form URL: https://docs.google.com/forms/d/e/1FAIpQLSej5KPWilge3LU6maDmlv4Udt5nsDmK2-uI2Papd6Qp4PQTAQ/formResponse
       // Field mapping (entry.XXXX = Form Field):
-      //   entry.XXXXXXXX = Name
-      //   entry.XXXXXXXX = Email
-      //   entry.XXXXXXXX = Phone
-      //   entry.XXXXXXXX = Experience
-      //   entry.XXXXXXXX = Portfolio
-      //   entry.XXXXXXXX = Message
-      //   entry.XXXXXXXX = Position
-      // TODO: Replace with actual Google Form URL and entry codes once form is created
+      //   entry.1080932395 = Position/Title
+      //   entry.1726115079 = Full Name
+      //   entry.966862296 = Email
+      //   entry.1797095609 = Phone Number
+      //   entry.1606250656 = Portfolio/LinkedIn URL
+      //   entry.1067313301 = Why do you want to join us (Message)
+      // Note: Experience field not mapped as it's not in the Google Form
       
-      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdApplicationFormID/formResponse';
+      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSej5KPWilge3LU6maDmlv4Udt5nsDmK2-uI2Papd6Qp4PQTAQ/formResponse';
       
       // Create FormData object with the correct entry IDs
       const formData = new FormData();
-      formData.append('entry.000000001', name);
-      formData.append('entry.000000002', email);
-      formData.append('entry.000000003', phone);
-      formData.append('entry.000000004', experience);
-      formData.append('entry.000000005', portfolio || 'Not provided');
-      formData.append('entry.000000006', message);
-      formData.append('entry.000000007', position);
+      formData.append('entry.1080932395', position); // Position/Title
+      formData.append('entry.1726115079', name); // Full Name
+      formData.append('entry.966862296', email); // Email
+      formData.append('entry.1797095609', phone); // Phone Number
+      formData.append('entry.1606250656', portfolio || 'Not provided'); // Portfolio/LinkedIn URL
+      formData.append('entry.1067313301', message); // Why do you want to join us
       
       // Debug: Log formData entries
       console.log('=== GOOGLE FORM DATA ===');
@@ -2958,8 +2956,6 @@
       
       // Submit to Google Form in the background using 'no-cors' mode
       // Note: 'no-cors' mode prevents reading the response, but the form submission will succeed
-      // Uncomment when actual Google Form URL is configured
-      /*
       try {
         await fetch(googleFormUrl, {
           method: 'POST',
@@ -2971,7 +2967,6 @@
         console.error('Google Form submission error:', error);
         // Continue even if Google Form fails
       }
-      */
       // --- GOOGLE FORM INTEGRATION END ---
       
       // Also submit to DataSDK if available (existing functionality)
@@ -3071,9 +3066,6 @@
     });
 
     // Smooth scroll section moved below careers functionality
-        }
-      });
-    });
 
     // WhatsApp widget
     const whatsappButton = document.getElementById('whatsapp-button');
@@ -3355,6 +3347,9 @@
           }, 100);
         } else if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
 
     // Data SDK Implementation
     let allSubmissions = [];
