@@ -2110,7 +2110,7 @@
    </div>
   </section><!-- Careers Section -->
   <section class="careers" id="careers" style="display: none;">
-   <h1 style="text-align: center; font-size: 3rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #ffd700, #daa520, #b8860b, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Careers</h1>
+   <h1 style="text-align: center; font-size: 3rem; font-weight: 800; margin-bottom: 1rem; margin-top: 6rem; background: linear-gradient(135deg, #ffd700, #daa520, #b8860b, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Careers</h1>
    <h2 class="section-title">Join Our Team</h2>
    <p style="text-align: center; color: #d4c5b0; font-size: 1.1rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">We're always looking for talented individuals to join our growing team. Explore our open positions and become part of something amazing!</p>
    <div class="careers-grid" id="careers-grid"></div><button class="cta-button" id="back-to-home" style="margin: 3rem auto 0; display: block;">← Back to Home</button>
@@ -2151,44 +2151,26 @@
    <p style="text-align: center; color: #d4c5b0; font-size: 1.1rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Artificial Intelligence is revolutionizing how businesses operate. Here's what you need to know to stay ahead.</p>
    <div class="ai-grid">
     <div class="ai-card">
-     <div class="ai-icon">
-      ●
-     </div>
      <h3 class="ai-title">Automate Repetitive Tasks</h3>
      <p class="ai-description">Free up your team's time by automating data entry, customer responses, and routine workflows. AI handles the mundane so you can focus on growth.</p>
     </div>
     <div class="ai-card">
-     <div class="ai-icon">
-      ■
-     </div>
      <h3 class="ai-title">Data-Driven Decisions</h3>
      <p class="ai-description">AI analyzes customer behavior, market trends, and performance metrics to provide actionable insights that drive smarter business decisions.</p>
     </div>
     <div class="ai-card">
-     <div class="ai-icon">
-      ◆
-     </div>
      <h3 class="ai-title">Content at Scale</h3>
      <p class="ai-description">Generate high-quality blog posts, social media content, and marketing copy in minutes. Maintain consistency while scaling your content production.</p>
     </div>
     <div class="ai-card">
-     <div class="ai-icon">
-      ◈
-     </div>
      <h3 class="ai-title">24/7 Customer Support</h3>
      <p class="ai-description">AI-powered chatbots provide instant responses to customer inquiries around the clock, improving satisfaction and reducing support costs.</p>
     </div>
     <div class="ai-card">
-     <div class="ai-icon">
-      ★
-     </div>
      <h3 class="ai-title">Personalization</h3>
      <p class="ai-description">Deliver personalized experiences to each customer based on their behavior, preferences, and history. Increase engagement and conversions.</p>
     </div>
     <div class="ai-card">
-     <div class="ai-icon">
-      ◉
-     </div>
      <h3 class="ai-title">Competitive Edge</h3>
      <p class="ai-description">Stay ahead of competitors by adopting AI early. Businesses using AI see 30-40% efficiency gains and faster time-to-market.</p>
     </div>
@@ -2755,42 +2737,36 @@
 
     const careers = [
       {
-        icon: "✉",
         title: "Email Marketing Specialist",
         type: "Full-Time",
         description: "Manage email campaigns and automation for our clients",
         requirements: ["2+ years email marketing experience", "Proficiency in Mailchimp/HubSpot", "Strong copywriting skills", "Data analysis capabilities"]
       },
       {
-        icon: "●",
         title: "Web Developer",
         type: "Full-Time",
         description: "Build responsive websites and web applications",
         requirements: ["3+ years web development experience", "HTML, CSS, JavaScript expertise", "React/Vue.js knowledge", "Portfolio of projects"]
       },
       {
-        icon: "◉",
         title: "Digital Advertising Manager",
         type: "Full-Time",
         description: "Create and optimize ad campaigns across platforms",
         requirements: ["2+ years in digital advertising", "Meta & Google Ads certified", "Budget management experience", "Strong analytical skills"]
       },
       {
-        icon: "■",
         title: "Growth Strategist",
         type: "Full-Time",
         description: "Develop data-driven growth strategies for clients",
         requirements: ["3+ years in growth/marketing", "Strategic thinking abilities", "Analytics expertise", "Client management skills"]
       },
       {
-        icon: "◆",
         title: "AI Content Specialist",
         type: "Full-Time",
         description: "Create and optimize AI-generated content",
         requirements: ["Experience with AI tools", "Excellent writing skills", "SEO knowledge", "Creative mindset"]
       },
       {
-        icon: "◼",
         title: "Automation Engineer",
         type: "Full-Time",
         description: "Build headless automation solutions",
@@ -2862,9 +2838,7 @@
     careers.forEach((career) => {
       const card = document.createElement('div');
       card.className = 'career-card';
-      card.innerHTML = `
-        <div class="career-icon">${career.icon}</div>
-        <h3 class="career-title">${career.title}</h3>
+      card.innerHTML = `        <h3 class="career-title">${career.title}</h3>
         <span class="career-type">${career.type}</span>
         <p class="career-description">${career.description}</p>
         <ul class="career-requirements">
@@ -3096,13 +3070,7 @@
       });
     });
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Smooth scroll section moved below careers functionality
         }
       });
     });
@@ -3365,6 +3333,28 @@
     });
     
     document.getElementById('back-to-home').addEventListener('click', showHomePage);
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        // Skip if it's the careers link (handled separately)
+        if (this.id === 'careers-link' || this.id === 'careers-link-mobile') {
+          return;
+        }
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        
+        // If we're on the careers page and clicking a nav link, go back to home first
+        if (target && careersSection && careersSection.style.display === 'block') {
+          showHomePage();
+          // Small delay to ensure home page is shown before scrolling
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        } else if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // Data SDK Implementation
     let allSubmissions = [];
