@@ -71,7 +71,7 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: rgba(218, 165, 32, 0.92);
+      background: rgba(10, 10, 10, 0.92);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(218, 165, 32, 0.3);
       padding: 1rem 2rem;
@@ -79,7 +79,7 @@
     }
 
     header.scrolled {
-      background: rgba(218, 165, 32, 0.95);
+      background: rgba(10, 10, 10, 0.95);
       box-shadow: 0 4px 20px rgba(218, 165, 32, 0.2);
     }
 
@@ -94,7 +94,7 @@
     .logo {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #2a2a2a;
+      color: #daa520;
       display: flex;
       align-items: center;
       gap: 0.4rem;
@@ -104,6 +104,7 @@
       height: 28px;
       width: 28px;
       object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(59%) sepia(74%) saturate(449%) hue-rotate(5deg) brightness(91%) contrast(88%);
     }
 
     .tagline {
@@ -117,7 +118,7 @@
     }
 
     nav a {
-      color: #2a2a2a;
+      color: #f5e6d3;
       text-decoration: none;
       font-weight: 500;
       position: relative;
@@ -134,7 +135,7 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+      background: linear-gradient(90deg, #daa520, #daa520);
       transform: translateX(-50%);
       transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -146,16 +147,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, rgba(26, 26, 26, 0.08) 0%, transparent 70%);
+      background: radial-gradient(circle at center, rgba(218, 165, 32, 0.08) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.4s ease;
       pointer-events: none;
     }
 
     nav a:hover {
-      color: #1a1a1a;
+      color: #daa520;
       transform: translateY(-2px) scale(1.05);
-      text-shadow: 0 0 20px rgba(26, 26, 26, 0.3);
+      text-shadow: 0 0 20px rgba(218, 165, 32, 0.3);
     }
 
     nav a:hover::before {
@@ -237,13 +238,13 @@
       left: 50%;
       width: 0;
       height: 3px;
-      background: linear-gradient(90deg, #ffd700, #daa520);
+      background: linear-gradient(90deg, #daa520, #daa520);
       transform: translateX(-50%);
       transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .mobile-menu a:hover {
-      color: #ffd700;
+      color: #daa520;
       transform: translateX(10px) scale(1.05);
       text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
     }
@@ -287,7 +288,7 @@
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #ffd700, #daa520, #b8860b, #ffd700);
+      background: linear-gradient(135deg, #daa520, #daa520, #daa520, #daa520);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -328,7 +329,7 @@
     .cta-button {
       display: inline-block;
       padding: 1rem 2.5rem;
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       color: #000000;
       text-decoration: none;
       border-radius: 50px;
@@ -476,7 +477,7 @@
       flex-shrink: 0;
       font-size: 1.2rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #ffd700, #daa520, #b8860b, #ffd700);
+      background: linear-gradient(135deg, #daa520, #daa520, #daa520, #daa520);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -516,7 +517,7 @@
       text-align: center;
       font-size: 2.5rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #ffd700, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520, #daa520);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -610,7 +611,7 @@
     }
 
     .service-card:hover .service-title {
-      color: #ffd700;
+      color: #daa520;
     }
 
     .service-description {
@@ -742,7 +743,7 @@
     }
 
     .tab-button.active {
-      color: #ffd700;
+      color: #daa520;
       border-bottom-color: #daa520;
     }
 
@@ -830,7 +831,7 @@
       display: inline-block;
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       color: #000000;
       border-radius: 50%;
       display: flex;
@@ -925,7 +926,7 @@
     .career-type {
       display: inline-block;
       padding: 0.25rem 0.75rem;
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       color: #000000;
       border-radius: 20px;
       font-size: 0.85rem;
@@ -970,7 +971,7 @@
     .apply-button {
       width: 100%;
       padding: 0.75rem;
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       color: #000000;
       border: none;
       border-radius: 50px;
@@ -1201,7 +1202,7 @@
       background: linear-gradient(135deg, rgba(218, 165, 32, 0.2), rgba(184, 134, 11, 0.2));
       padding: 0.75rem 1rem;
       border-radius: 10px;
-      color: #ffd700;
+      color: #daa520;
       font-weight: 600;
       font-size: 0.9rem;
       border-left: 3px solid #daa520;
@@ -1287,7 +1288,7 @@
       justify-content: center;
       width: 50px;
       height: 50px;
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       color: #000000;
       border-radius: 50%;
       font-weight: 700;
@@ -1649,7 +1650,7 @@
     }
 
     .whatsapp-button {
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -1766,7 +1767,7 @@
     }
 
     .whatsapp-header {
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       color: #000000;
       padding: 1.25rem;
       font-weight: 600;
@@ -1795,7 +1796,7 @@
     }
 
     .whatsapp-tab.active {
-      color: #ffd700;
+      color: #daa520;
       border-bottom-color: #daa520;
       background: rgba(218, 165, 32, 0.1);
     }
@@ -1853,7 +1854,7 @@
     .whatsapp-window button[type="submit"] {
       width: 100%;
       padding: 0.85rem;
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       color: #000000;
       border: 2px solid rgba(218, 165, 32, 0.3);
       border-radius: 10px;
@@ -1876,7 +1877,7 @@
       right: 2rem;
       width: 50px;
       height: 50px;
-      background: linear-gradient(135deg, #daa520, #b8860b);
+      background: linear-gradient(135deg, #daa520, #daa520);
       border-radius: 50%;
       display: none;
       align-items: center;
@@ -1999,8 +2000,8 @@
   </div><!-- Hero Section -->
   <section class="hero" id="home">
    <div class="hero-content">
-    <h1 id="hero-heading">Transform Your Digital Presence</h1>
-    <p style="font-size: 1.4rem; color: #f5e6d3; margin-bottom: 1.5rem; font-weight: 600; text-shadow: 1px 1px 3px rgba(218, 165, 32, 0.2);">Seamless Support, Smart Solutions</p>
+    <h1 id="hero-heading" style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; background: linear-gradient(135deg, #daa520, #daa520, #daa520, #daa520); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.2; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 4px 4px 8px rgba(0, 0, 0, 0.2), 6px 6px 12px rgba(0, 0, 0, 0.1); filter: drop-shadow(0 0 20px rgba(218, 165, 32, 0.4)); transform-style: preserve-3d; letter-spacing: 1px;">Seamless Support, Smart Solutions</h1>
+    <p style="font-size: 1.1rem; color: #ffffff; margin-bottom: 1.5rem; font-weight: 400; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);">Transform Your Digital Presence</p>
     <p style="font-size: 1.1rem; color: #d4c5b0; margin-bottom: 2rem; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto;">Vgen Solutions focuses on small and medium businesses, providing dedicated support to help you grow together. We understand your unique challenges and deliver personalized solutions that drive real results.</p><button class="cta-button" id="cta-button" onclick="openContactForm()">Get Started</button>
     <div class="feature-badges">
      <div class="badge"><span class="badge-text">Fast Delivery</span>
@@ -2176,7 +2177,7 @@
    </div>
   </section><!-- Careers Section -->
   <section class="careers" id="careers" style="display: none;">
-   <h1 style="text-align: center; font-size: 3rem; font-weight: 800; margin-bottom: 1rem; margin-top: 6rem; background: linear-gradient(135deg, #ffd700, #daa520, #b8860b, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Careers</h1>
+   <h1 style="text-align: center; font-size: 3rem; font-weight: 800; margin-bottom: 1rem; margin-top: 6rem; background: linear-gradient(135deg, #daa520, #daa520, #daa520, #daa520); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Careers</h1>
    <h2 class="section-title">Join Our Team</h2>
    <p style="text-align: center; color: #d4c5b0; font-size: 1.1rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">We're always looking for talented individuals to join our growing team. Explore our open positions and become part of something amazing!</p>
    <div class="careers-grid" id="careers-grid"></div><button class="cta-button" id="back-to-home" style="margin: 3rem auto 0; display: block;">← Back to Home</button>
@@ -2801,7 +2802,7 @@
       surface_color: "#1a1a1a",
       text_color: "#f5e6d3",
       primary_action_color: "#daa520",
-      secondary_action_color: "#b8860b",
+      secondary_action_color: "#daa520",
       font_family: "Inter",
       font_size: 16
     };
