@@ -689,6 +689,12 @@
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
+      .services-carousel-container {
+        padding: 2rem 0;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      
       .service-image {
         height: 400px;
       }
@@ -703,6 +709,12 @@
       
       .service-card {
         padding: 1.25rem;
+      }
+      
+      .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
       }
       
       .carousel-btn#carousel-prev {
@@ -1430,6 +1442,13 @@
       to {
         opacity: 1;
         transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
