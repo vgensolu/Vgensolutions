@@ -91,7 +91,16 @@
     .logo {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #ffd700;
+      color: #daa520;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo img {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
     }
 
     .tagline {
@@ -1555,6 +1564,33 @@
       border-top: 1px solid rgba(218, 165, 32, 0.2);
       color: #d4c5b0;
     }
+    
+    .footer-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-logo img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+    }
+    
+    .footer-logo-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #daa520;
+    }
+    
+    .footer-registration {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #d4c5b0;
+      font-style: italic;
+    }
 
     .faq-item {
       margin-bottom: 1rem;
@@ -1974,6 +2010,7 @@
    <div class="header-content">
     <div>
      <div class="logo" id="company-name">
+      <img src="logo" alt="Vgen Solutions Logo">
       Vgen Solutions
      </div>
      <div class="tagline" id="tagline">
@@ -2548,7 +2585,12 @@
     </div>
    </div>
    <div class="footer-bottom">
+    <div class="footer-logo">
+     <img src="logo" alt="Vgen Solutions Logo">
+     <span class="footer-logo-text">Vgen Solutions</span>
+    </div>
     <p id="footer-text">© 2024 Vgen Solutions. All rights reserved.</p>
+    <p class="footer-registration">Under Operation of Vgen Digital Marketing Services, DTI Registration No.7116161</p>
    </div>
   </footer><!-- Modal -->
   <div class="modal" id="modal">
