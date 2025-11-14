@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vgen Solutions Service Center</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #b8860b 100%);
+            height: 100%;
+            overflow: hidden;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        .chat-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            box-shadow: 0 20px 40px rgba(237, 168, 0, 0.2);
+            width: 100%;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #EDA800 0%, #daa520 100%);
+            color: #0a0a0a;
+            padding: 16px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(237, 168, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+
+        .welcome-text {
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0 0 8px 0;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            background: #0a0a0a;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .message.bot {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .message-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            word-break: break-word;
+            position: relative;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #EDA800 0%, #daa520 100%);
+            color: #0a0a0a;
+            border-bottom-right-radius: 6px;
+        }
+
+        .message.bot .message-bubble {
+            background: #1a1a1a;
+            color: #f5e6d3;
+            border: 1px solid #daa520;
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 2px 8px rgba(237, 168, 0, 0.2);
+        }
+
+        .message-text {
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .message-time {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        .message.bot .message-time {
+            text-align: left;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .quick-reply {
+            background: #1a1a1a;
+            border: 1px solid #daa520;
+            border-radius: 20px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #f5e6d3;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .quick-reply:hover {
+            background: linear-gradient(135deg, #EDA800 0%, #daa520 100%);
+            color: #0a0a0a;
+            border-color: #ffd700;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(237, 168, 0, 0.3);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border: 1px solid #daa520;
+            border-radius: 18px;
+            border-bottom-left-radius: 6px;
+            max-width: 80px;
+            box-shadow: 0 2px 8px rgba(237, 168, 0, 0.2);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #daa520;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bot-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #EDA800 0%, #daa520 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0a0a;
+            font-size: 16px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            border: 1px solid #fecaca;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                height: 100%;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .chat-header {
+                padding: 12px 16px;
+            }
+            
+            .company-name {
+                font-size: 18px;
+            }
+            
+            .welcome-text {
+                font-size: 13px;
+            }
+            
+            .status-indicator {
+                font-size: 11px;
+            }
+            
+            .messages-container {
+                padding: 12px;
+            }
+            
+            .message-bubble {
+                max-width: 90%;
+                padding: 10px 14px;
+            }
+            
+            .message-text {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            
+            .quick-replies {
+                gap: 6px;
+                margin-top: 10px;
+            }
+            
+            .quick-reply {
+                padding: 8px 12px;
+                font-size: 12px;
+                min-height: 40px;
+                border-radius: 16px;
+            }
+            
+            .bot-avatar {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+                margin-right: 6px;
+            }
+            
+            .typing-indicator {
+                padding: 10px 14px;
+                max-width: 70px;
+            }
+            
+            .typing-dot {
+                width: 5px;
+                height: 5px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chat-header {
+                padding: 10px 12px;
+            }
+            
+            .company-name {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+            
+            .welcome-text {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+            
+            .messages-container {
+                padding: 8px;
+            }
+            
+            .message-bubble {
+                max-width: 95%;
+                padding: 8px 12px;
+            }
+            
+            .message-text {
+                font-size: 13px;
+            }
+            
+            .quick-reply {
+                padding: 6px 10px;
+                font-size: 11px;
+                min-height: 36px;
+                border-radius: 14px;
+            }
+            
+            .bot-avatar {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+                margin-right: 4px;
+            }
+            
+            .message-time {
+                font-size: 10px;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="chat-container">
+   <header class="chat-header">
+    <h1 class="company-name" id="companyName">Vgen Solutions Service Center</h1>
+    <p class="welcome-text" id="welcomeMessage">Seamless Support, Smart Solutions</p>
+    <div class="status-indicator">
+     <div class="status-dot"></div><span id="businessHours">Available 24/7</span>
+    </div>
+   </header>
+   <main class="messages-container" id="messagesContainer">
+    <div class="message bot">
+     <div class="bot-avatar">
+      🤖
+     </div>
+     <div class="message-bubble">
+      <p class="message-text">Welcome to Vgen Solutions! We focus on small and medium businesses, providing dedicated support to help you grow together. How can I assist you today?</p>
+      <div class="quick-replies" id="mainButtons">
+       <div class="quick-reply" onclick="handleButtonClick('services', 'What services do you offer?')">
+        Our Services
+       </div>
+       <div class="quick-reply" onclick="handleButtonClick('advertising', 'Tell me about advertising platforms')">
+        Advertising Platforms
+       </div>
+       <div class="quick-reply" onclick="handleButtonClick('ai_solutions', 'How can AI help my business?')">
+        AI Solutions
+       </div>
+       <div class="quick-reply" onclick="handleButtonClick('strategy', 'What is your process?')">
+        Our Strategy
+       </div>
+       <div class="quick-reply" onclick="handleButtonClick('branding', 'Help with branding')">
+        Branding
+       </div>
+       <div class="quick-reply" onclick="handleButtonClick('contact', 'How can I contact you?')">
+        Contact Us
+       </div>
+       <div class="quick-reply" onclick="handleButtonClick('business', 'Business hours and info')">
+        Business Info
+       </div>
+       <div class="quick-reply" onclick="handleButtonClick('get_started', 'I want to get started')">
+        Get Started
+       </div>
+      </div>
+     </div>
+    </div>
+   </main>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            company_name: "Vgen Solutions Service Center",
+            welcome_message: "Seamless Support, Smart Solutions",
+            business_hours: "Available 24/7",
+            contact_info: "conatact@vgensolutions.com",
+            background_color: "#0a0a0a",
+            surface_color: "#1a1a1a",
+            text_color: "#f5e6d3",
+            primary_action_color: "#EDA800",
+            secondary_action_color: "#daa520",
+            font_family: "Inter",
+            font_size: 14
+        };
+
+        let conversations = [];
+        let isLoading = false;
+        let isTyping = false;
+
+        // Comprehensive Vgen Solutions knowledge base
+        const knowledgeBase = {
+            'business': {
+                response: "Vgen Solutions focuses on small and medium businesses, providing dedicated support to help you grow together. We understand your unique challenges and deliver personalized solutions that drive real results.<br><br>Our business hours are {business_hours}. We're committed to fast delivery, results-driven solutions, enterprise-grade security, and innovative technology.",
+                buttons: [
+                    { text: "⚙️ Our Services", action: "services" },
+                    { text: "📞 Contact Us", action: "contact" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'contact': {
+                response: "You can reach us at {contact_info}. We typically respond within 24 hours during business days. For urgent matters, please mention 'URGENT' in your subject line.<br><br>We're here to provide seamless support and smart solutions for your business needs.",
+                buttons: [
+                    { text: "🕒 Business Info", action: "business" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'services': {
+                response: "Here are our comprehensive services designed for small and medium businesses:",
+                buttons: [
+                    { text: "📧 Email Setup & Management", action: "email_service" },
+                    { text: "🌐 Web Development", action: "web_development" },
+                    { text: "📢 Digital Advertising", action: "digital_advertising" },
+                    { text: "📈 Growth Strategy", action: "growth_strategy" },
+                    { text: "🤖 AI Content Generation", action: "ai_content" },
+                    { text: "⚡ Headless Automations", action: "automations" },
+                    { text: "👥 HR Solutions", action: "hr_solutions" },
+                    { text: "💻 Advanced HTML Integration", action: "html_integration" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'email_service': {
+                response: "Email Setup & Management<br><br>Professional email solutions with custom domains and advanced security. We help you establish a professional email presence that builds trust with your customers and protects your business communications.<br><br><strong>Sample Quote:</strong> \"Professional email setup with custom domain, security features, and 24/7 support - Starting at $299\"<br><br><strong>Template Includes:</strong> Custom domain setup, professional email addresses, spam protection, mobile sync, and training materials.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "All Services", action: "services" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'web_development': {
+                response: "Web Development<br><br>Custom websites and web applications built with modern technologies. We create responsive, fast-loading websites that convert visitors into customers and grow with your business.<br><br><strong>Sample Quote:</strong> \"Professional business website with responsive design, SEO optimization, and content management - Starting at $1,299\"<br><br><strong>Template Includes:</strong> 5-page responsive website, contact forms, SEO setup, mobile optimization, and 3 months support.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "All Services", action: "services" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'digital_advertising': {
+                response: "Digital Advertising<br><br>Strategic ad campaigns across Meta, Google, and other platforms. We help you reach your ideal customers with targeted campaigns that maximize ROI and drive real business results.<br><br><strong>Sample Quote:</strong> \"Complete digital advertising campaign setup and management - Starting at $899/month (plus ad spend)\"<br><br><strong>Template Includes:</strong> Campaign strategy, ad creation, audience targeting, performance tracking, and monthly optimization reports.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "Advertising Platforms", action: "advertising" },
+                    { text: "All Services", action: "services" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'growth_strategy': {
+                response: "Growth Strategy<br><br>Data-driven strategies to scale your business and increase revenue. We analyze your market, competitors, and opportunities to create a roadmap for sustainable growth.<br><br><strong>Sample Quote:</strong> \"Comprehensive business growth strategy and implementation plan - Starting at $1,999\"<br><br><strong>Template Includes:</strong> Market analysis, competitor research, growth roadmap, KPI framework, and quarterly review sessions.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "Our Process", action: "strategy" },
+                    { text: "All Services", action: "services" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_content': {
+                response: "AI Content Generation<br><br>Automated content creation powered by advanced AI technology. Generate high-quality blog posts, social media content, and marketing copy in minutes while maintaining consistency and scaling your content production.<br><br><strong>Sample Quote:</strong> \"AI-powered content generation system setup and training - Starting at $699\"<br><br><strong>Template Includes:</strong> AI tool setup, content templates, brand voice training, workflow automation, and team training sessions.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "AI Solutions", action: "ai_solutions" },
+                    { text: "All Services", action: "services" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'automations': {
+                response: "Headless Automations<br><br>Intelligent browser automation for repetitive tasks and workflows. Free up your team's time by automating data entry, customer responses, and routine processes so you can focus on growth.<br><br><strong>Sample Quote:</strong> \"Custom automation solution for repetitive business tasks - Starting at $1,499\"<br><br><strong>Template Includes:</strong> Process analysis, automation setup, testing phase, documentation, and staff training for automated workflows.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "AI Solutions", action: "ai_solutions" },
+                    { text: "All Services", action: "services" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'hr_solutions': {
+                response: "HR Solutions<br><br>Expert local and international labor law consultation and comprehensive HR documentation services. We help you navigate complex employment regulations and create proper HR frameworks for your growing business.<br><br><strong>Sample Quote:</strong> \"Complete HR documentation and compliance package - Starting at $799\"<br><br><strong>Template Includes:</strong> Employee handbook, contract templates, policy documents, compliance checklists, and legal consultation sessions.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "All Services", action: "services" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'html_integration': {
+                response: "Advanced HTML Integration<br><br>Professional email HTML templates and custom web integration with responsive designs, formatting, and seamless image integration. Perfect for creating stunning email campaigns and web experiences.<br><br><strong>Sample Quote:</strong> \"Custom HTML email templates and web integration - Starting at $499\"<br><br><strong>Template Includes:</strong> 5 responsive email templates, web integration code, cross-platform testing, and implementation guide.",
+                buttons: [
+                    { text: "Contact Us for Quote", action: "contact" },
+                    { text: "All Services", action: "services" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'advertising': {
+                response: "Master Every Advertising Platform<br><br>Each platform has unique strengths. We help you choose the right mix and maximize your ROI across all channels:",
+                buttons: [
+                    { text: "📘 Meta Ads (Facebook & Instagram)", action: "meta_ads" },
+                    { text: "🔍 Google Ads", action: "google_ads" },
+                    { text: "📺 YouTube Ads", action: "youtube_ads" },
+                    { text: "💼 LinkedIn Ads", action: "linkedin_ads" },
+                    { text: "📌 Pinterest Ads", action: "pinterest_ads" },
+                    { text: "🎵 TikTok Ads", action: "tiktok_ads" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'meta_ads': {
+                response: "Meta Ads (Facebook & Instagram)<br><br>Best For: Brand awareness, community building, visual storytelling<br><br>• 3 billion+ active users worldwide<br>• Advanced audience targeting by interests, behaviors, demographics<br>• Perfect for B2C, e-commerce, and lifestyle brands<br>• Instagram Stories & Reels for engaging younger audiences<br><br>★ Pro Tip: Use carousel ads to showcase multiple products and retarget website visitors for 3x higher conversion rates.",
+                buttons: [
+                    { text: "📢 All Platforms", action: "advertising" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'google_ads': {
+                response: "Google Ads<br><br>Best For: High-intent searches, lead generation, local businesses<br><br>• Capture customers actively searching for your products<br>• Search, Display, Shopping, and YouTube ads<br>• Ideal for B2B, services, and high-consideration purchases<br>• Local campaigns drive foot traffic to physical stores<br><br>★ Pro Tip: Focus on long-tail keywords with lower competition and higher conversion intent to maximize your budget.",
+                buttons: [
+                    { text: "📢 All Platforms", action: "advertising" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'youtube_ads': {
+                response: "YouTube Ads<br><br>Best For: Video storytelling, product demos, brand building<br><br>• 2 billion+ logged-in users monthly<br>• Skippable, non-skippable, and bumper ads<br>• Great for tutorials, testimonials, and explainer videos<br>• Target by interests, topics, and specific channels<br><br>★ Pro Tip: Hook viewers in the first 5 seconds and include a clear call-to-action to drive engagement.",
+                buttons: [
+                    { text: "📢 All Platforms", action: "advertising" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'linkedin_ads': {
+                response: "LinkedIn Ads<br><br>Best For: B2B marketing, professional services, recruitment<br><br>• 900 million+ professionals and decision-makers<br>• Target by job title, company size, industry, seniority<br>• Perfect for lead generation, webinars, and whitepapers<br>• Highest quality B2B leads across all platforms<br><br>★ Pro Tip: Use Sponsored InMail to reach decision-makers directly with personalized messages.",
+                buttons: [
+                    { text: "📢 All Platforms", action: "advertising" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'pinterest_ads': {
+                response: "Pinterest Ads<br><br>Best For: E-commerce, DIY, home decor, fashion, food<br><br>• 450 million+ users with high purchase intent<br>• Visual discovery platform for inspiration<br>• 83% of users make purchases based on Pinterest content<br>• Long content lifespan (pins stay relevant for months)<br><br>★ Pro Tip: Create vertical pins with clear product images and use rich pins to add extra details.",
+                buttons: [
+                    { text: "📢 All Platforms", action: "advertising" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'tiktok_ads': {
+                response: "TikTok Ads<br><br>Best For: Gen Z & Millennials, viral content, brand awareness<br><br>• 1 billion+ highly engaged users<br>• Short-form video content with massive reach potential<br>• Perfect for trendy, authentic, and entertaining content<br>• Lower CPM compared to other platforms<br><br>★ Pro Tip: Embrace trends, use native-looking content, and partner with creators for authentic reach.",
+                buttons: [
+                    { text: "📢 All Platforms", action: "advertising" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_solutions': {
+                response: "Harness the Power of AI<br><br>Artificial Intelligence is revolutionizing how businesses operate. Here's what you need to know to stay ahead:",
+                buttons: [
+                    { text: "⚡ Automate Tasks", action: "ai_automation" },
+                    { text: "📊 Data-Driven Decisions", action: "ai_data" },
+                    { text: "📝 Content at Scale", action: "ai_content_scale" },
+                    { text: "🎯 Personalization", action: "ai_personalization" },
+                    { text: "🏆 Competitive Edge", action: "ai_advantage" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_automation': {
+                response: "Automate Repetitive Tasks<br><br>Free up your team's time by automating data entry, customer responses, and routine workflows. AI handles the mundane so you can focus on growth.<br><br>Our headless automation solutions can save your business 20-30 hours per week on repetitive tasks.",
+                buttons: [
+                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_data': {
+                response: "Data-Driven Decisions<br><br>AI analyzes customer behavior, market trends, and performance metrics to provide actionable insights that drive smarter business decisions.<br><br>Make informed choices backed by data, not guesswork.",
+                buttons: [
+                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_content_scale': {
+                response: "Content at Scale<br><br>Generate high-quality blog posts, social media content, and marketing copy in minutes. Maintain consistency while scaling your content production.<br><br>Our AI content generation can produce weeks of content in hours.",
+                buttons: [
+                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_personalization': {
+                response: "Personalization<br><br>Deliver personalized experiences to each customer based on their behavior, preferences, and history. Increase engagement and conversions.<br><br>Personalized experiences can increase conversion rates by up to 202%.",
+                buttons: [
+                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_advantage': {
+                response: "Competitive Edge<br><br>Stay ahead of competitors by adopting AI early. Businesses using AI see 30-40% efficiency gains and faster time-to-market.<br><br>Don't get left behind - embrace AI to future-proof your business.",
+                buttons: [
+                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'strategy': {
+                response: "Our 4-Step Strategy Process<br><br>We follow a proven methodology to ensure your project's success:",
+                buttons: [
+                    { text: "🔍 1. Discovery", action: "discovery" },
+                    { text: "📋 2. Planning", action: "planning" },
+                    { text: "⚡ 3. Execution", action: "execution" },
+                    { text: "📈 4. Optimization", action: "optimization" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'discovery': {
+                response: "1. Discovery<br><br>We analyze your business needs and goals to create a tailored strategy. This phase includes:<br><br>• Business analysis and goal setting<br>• Market research and competitor analysis<br>• Target audience identification<br>• Current system assessment<br>• Opportunity identification",
+                buttons: [
+                    { text: "📋 Our Full Process", action: "strategy" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'planning': {
+                response: "2. Planning<br><br>Detailed roadmap with milestones and deliverables for your project. This includes:<br><br>• Project timeline and milestones<br>• Resource allocation<br>• Technology stack selection<br>• Risk assessment and mitigation<br>• Success metrics definition",
+                buttons: [
+                    { text: "📋 Our Full Process", action: "strategy" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'execution': {
+                response: "3. Execution<br><br>Expert implementation with regular updates and quality assurance. We ensure:<br><br>• Fast delivery with quality standards<br>• Regular progress updates<br>• Continuous quality assurance<br>• Transparent communication<br>• Agile methodology implementation",
+                buttons: [
+                    { text: "📋 Our Full Process", action: "strategy" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'optimization': {
+                response: "4. Optimization<br><br>Continuous monitoring and improvements for maximum performance. This includes:<br><br>• Performance monitoring and analytics<br>• A/B testing and optimization<br>• Regular maintenance and updates<br>• ROI measurement and reporting<br>• Ongoing support and improvements",
+                buttons: [
+                    { text: "📋 Our Full Process", action: "strategy" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'branches': {
+                response: "Vgen Solutions Global Network<br><br>Our expanding network of branches and subsidiaries allows us to serve clients worldwide while maintaining local expertise and personalized service:",
+                buttons: [
+                    { text: "Main Headquarters", action: "headquarters" },
+                    { text: "Regional Offices", action: "regional_offices" },
+                    { text: "Digital Marketing Division", action: "digital_division" },
+                    { text: "AI Solutions Subsidiary", action: "ai_subsidiary" },
+                    { text: "International Partners", action: "international_partners" },
+                    { text: "Future Expansion Plans", action: "expansion_plans" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'headquarters': {
+                response: "Vgen Solutions Headquarters<br><br>Location: Subec Pagudpud, Ilocos Norte 2919, Philippines<br><br>Our main headquarters serves as the central hub for all operations, housing our core development team, strategic planning division, and executive leadership. From here, we coordinate global projects and maintain our high standards of service delivery.<br><br>Services: Full-service digital solutions, project management, strategic consulting, and 24/7 technical support.",
+                buttons: [
+                    { text: "Contact Headquarters", action: "contact" },
+                    { text: "All Branches", action: "branches" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'regional_offices': {
+                response: "Regional Service Centers<br><br>North America Division: Remote operations serving US and Canadian markets<br>• Specializes in e-commerce solutions and growth marketing<br>• Local business hours: EST/PST coverage<br><br>European Division: Remote operations serving EU markets<br>• Focus on GDPR-compliant solutions and multilingual support<br>• Local business hours: CET coverage<br><br>Asia-Pacific Division: Expanding presence across Southeast Asia<br>• Expertise in mobile-first solutions and regional platforms<br>• Local business hours: Multiple timezone coverage",
+                buttons: [
+                    { text: "Contact Regional Office", action: "contact" },
+                    { text: "All Branches", action: "branches" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'digital_division': {
+                response: "Vgen Digital Marketing Division<br><br>Our specialized digital marketing subsidiary focuses exclusively on advertising platforms and growth strategies:<br><br>Core Services:<br>• Meta Ads (Facebook & Instagram) management<br>• Google Ads optimization and strategy<br>• Multi-platform advertising campaigns<br>• Performance analytics and reporting<br>• Conversion rate optimization<br><br>This division handles over 200+ active advertising campaigns across various industries, delivering an average ROI improvement of 150% for our clients.",
+                buttons: [
+                    { text: "Contact Digital Division", action: "contact" },
+                    { text: "Advertising Platforms", action: "advertising" },
+                    { text: "All Branches", action: "branches" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'ai_subsidiary': {
+                response: "Vgen AI Solutions Subsidiary<br><br>Our cutting-edge AI subsidiary specializes in artificial intelligence and automation solutions for businesses:<br><br>Specialized Services:<br>• AI content generation systems<br>• Headless browser automation<br>• Machine learning implementations<br>• Chatbot development and deployment<br>• Process automation consulting<br>• Custom AI model training<br><br>This subsidiary works with Fortune 500 companies and innovative startups to implement AI solutions that drive efficiency and growth.",
+                buttons: [
+                    { text: "Contact AI Division", action: "contact" },
+                    { text: "AI Solutions", action: "ai_solutions" },
+                    { text: "All Branches", action: "branches" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'international_partners': {
+                response: "International Partnership Network<br><br>We maintain strategic partnerships with leading technology companies and service providers worldwide:<br><br>Technology Partners:<br>• Cloud infrastructure providers (AWS, Google Cloud, Azure)<br>• Marketing platform integrations (HubSpot, Salesforce, Mailchimp)<br>• E-commerce platforms (Shopify, WooCommerce, Magento)<br><br>Service Partners:<br>• Legal compliance specialists in various jurisdictions<br>• Local marketing agencies for region-specific campaigns<br>• Translation and localization services<br><br>These partnerships enable us to deliver comprehensive solutions regardless of your business location or industry.",
+                buttons: [
+                    { text: "Partnership Opportunities", action: "contact" },
+                    { text: "All Branches", action: "branches" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'expansion_plans': {
+                response: "Future Expansion Plans<br><br>Vgen Solutions is actively expanding to better serve our growing client base:<br><br>2024 Expansion Goals:<br>• Establish dedicated offices in 3 major metropolitan areas<br>• Launch specialized fintech solutions division<br>• Expand AI subsidiary with machine learning research lab<br>• Open 24/7 support centers in multiple timezones<br><br>2025 Vision:<br>• International presence in 10+ countries<br>• Industry-specific solution divisions<br>• Advanced AI and blockchain service offerings<br>• Strategic acquisitions of complementary service providers<br><br>Join us on our growth journey and benefit from our expanding capabilities!",
+                buttons: [
+                    { text: "Investment Opportunities", action: "contact" },
+                    { text: "Career Opportunities", action: "contact" },
+                    { text: "All Branches", action: "branches" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'branding': {
+                response: "Branding for Small Businesses<br><br>Your brand is more than a logo—it's the emotional connection you build with customers. Strong branding helps small businesses compete with larger companies.",
+                buttons: [
+                    { text: "Visual Identity", action: "visual_identity" },
+                    { text: "Brand Voice", action: "brand_voice" },
+                    { text: "Customer Experience", action: "customer_experience" },
+                    { text: "Digital Presence", action: "digital_presence" },
+                    { text: "Community Building", action: "community_building" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'visual_identity': {
+                response: "Visual Identity<br><br>Create a memorable logo, color palette, and design system that reflects your values and resonates with your target audience.<br><br>Consistent branding increases revenue by up to 23%. We help you create a cohesive visual identity that stands out.",
+                buttons: [
+                    { text: "🎨 All Branding Services", action: "branding" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'brand_voice': {
+                response: "Brand Voice<br><br>Develop a unique tone and messaging style that makes your business recognizable across all customer touchpoints.<br><br>64% of consumers cite shared values as the reason they trust a brand. We help you find and express your authentic voice.",
+                buttons: [
+                    { text: "🎨 All Branding Services", action: "branding" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'customer_experience': {
+                response: "Customer Experience<br><br>Every interaction shapes perception. Deliver consistent, exceptional experiences that turn customers into brand advocates.<br><br>86% of buyers will pay more for a great customer experience. We help you design memorable customer journeys.",
+                buttons: [
+                    { text: "🎨 All Branding Services", action: "branding" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'digital_presence': {
+                response: "Digital Presence<br><br>Your website, social media, and online reviews form your digital storefront. Make every pixel count.<br><br>75% of users judge credibility based on website design. We create digital experiences that build trust and drive conversions.",
+                buttons: [
+                    { text: "🎨 All Branding Services", action: "branding" },
+                    { text: "🚀 Get Started", action: "get_started" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            },
+            'community_building': {
+                response: "Community Building<br><br>Engage with your audience authentically. Build a loyal community that supports and promotes your business.<br><br>Communities drive 5x higher engagement than traditional marketing. We help you build engaged, loyal customer communities that become your biggest advocates.",
+                buttons: [
+                    { text: "Brand Story", action: "brand_story" },
+                    { text: "All Branding Services", action: "branding" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'brand_story': {
+                response: "Brand Story<br><br>Share your journey, mission, and values. People connect with stories, not just products or services.<br><br>Stories are 22x more memorable than facts alone. Your brand story creates emotional connections that turn customers into loyal advocates.",
+                buttons: [
+                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
+                    { text: "All Branding Services", action: "branding" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'small_business_advantages': {
+                response: "Why Small Businesses Win with Strong Marketing<br><br>\"Your brand is what people say about you when you're not in the room.\" — Jeff Bezos, Amazon Founder<br><br>Here's why small businesses have unique advantages:",
+                buttons: [
+                    { text: "Level the Playing Field", action: "level_playing_field" },
+                    { text: "Build Trust Faster", action: "build_trust" },
+                    { text: "Own Your Niche", action: "own_niche" },
+                    { text: "Adapt Quickly", action: "adapt_quickly" },
+                    { text: "Create Loyal Fans", action: "loyal_fans" },
+                    { text: "Invest in Growth", action: "invest_growth" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'level_playing_field': {
+                response: "1. Level the Playing Field<br><br>Digital marketing gives small businesses the same tools as large corporations. With the right strategy, you can compete and win against bigger competitors.<br><br>We help you access enterprise-level marketing tools and strategies at small business prices.",
+                buttons: [
+                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'build_trust': {
+                response: "2. Build Trust Faster<br><br>Small businesses have an advantage: authenticity. Customers trust real stories and personal connections more than corporate messaging.<br><br>We help you showcase your authentic story and build genuine connections with your audience.",
+                buttons: [
+                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'own_niche': {
+                response: "3. Own Your Niche<br><br>You don't need to appeal to everyone. Focus on your ideal customer, dominate your niche, and become the go-to expert in your field.<br><br>We help you identify and dominate your specific market niche with targeted strategies.",
+                buttons: [
+                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'adapt_quickly': {
+                response: "4. Adapt Quickly<br><br>Small businesses can pivot faster than large companies. Use this agility to test new ideas, respond to trends, and stay ahead of the curve.<br><br>We help you leverage your agility advantage with rapid testing and optimization strategies.",
+                buttons: [
+                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'loyal_fans': {
+                response: "5. Create Loyal Fans<br><br>Every customer interaction is an opportunity to create a raving fan. Word-of-mouth from satisfied customers is your most powerful marketing tool.<br><br>We help you design customer experiences that turn buyers into brand ambassadors.",
+                buttons: [
+                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
+                    { text: "Client Reviews", action: "client_reviews" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'invest_growth': {
+                response: "6. Invest in Growth<br><br>Marketing isn't an expense—it's an investment in your future. Every dollar spent on strategic marketing returns multiple times in revenue and brand equity.<br><br>We help you maximize ROI with data-driven marketing investments that fuel sustainable growth.",
+                buttons: [
+                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'client_reviews': {
+                response: "Client Reviews<br><br>\"Vgen Solutions transformed our online presence. Their team is professional, responsive, and delivers exceptional results.\" — Sarah Johnson, CEO, TechStart Inc.<br><br>\"Outstanding service! They helped us scale our digital marketing efforts and doubled our conversion rates.\" — Michael Chen, Marketing Director, GrowthCo<br><br>\"The AI content generation service saved us countless hours. Highly recommend their innovative solutions!\" — Emily Rodriguez, Content Manager, MediaHub",
+                buttons: [
+                    { text: "Contact Information", action: "contact_details" },
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'contact_details': {
+                response: "Let's Connect<br><br>Email: contact@vgensolutions.com<br>Phone: +1 (555) 123-4567<br>Address: Subec Pagudpud Ilocos Norte 2919 Philippines<br><br>Operating remotely to support businesses globally. Ready to transform your brand? Small and medium businesses are the backbone of the economy. We're here to help you grow, compete, and thrive in the digital age.",
+                buttons: [
+                    { text: "Get Started", action: "get_started" },
+                    { text: "Our Services", action: "services" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'get_started': {
+                response: "Ready to Get Started?<br><br>Let's discuss your project and create a tailored solution for your business. Contact us at {contact_info} or choose how you'd like to proceed:<br><br>• Fast Delivery - Projects completed in record time<br>• Results Driven - Measurable ROI on every project<br>• Secure - Enterprise-grade security standards<br>• Innovative - Cutting-edge technology solutions",
+                buttons: [
+                    { text: "📞 Contact Us Now", action: "contact" },
+                    { text: "⚙️ View Our Services", action: "services" },
+                    { text: "📋 Our Process", action: "strategy" },
+                    { text: "🏠 Back to Main Menu", action: "main" }
+                ]
+            }
+        };
+
+        // DOM elements
+        const messagesContainer = document.getElementById('messagesContainer');
+        const companyName = document.getElementById('companyName');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const businessHours = document.getElementById('businessHours');
+
+        // Data SDK handler
+        const dataHandler = {
+            onDataChanged(data) {
+                conversations = data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+            }
+        };
+
+        // Element SDK implementation
+        async function onConfigChange(config) {
+            const company = config.company_name || defaultConfig.company_name;
+            const welcome = config.welcome_message || defaultConfig.welcome_message;
+            const hours = config.business_hours || defaultConfig.business_hours;
+            const bgColor = config.background_color || defaultConfig.background_color;
+            const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const fontFamily = config.font_family || defaultConfig.font_family;
+            const fontSize = config.font_size || defaultConfig.font_size;
+
+            // Update text content
+            companyName.textContent = company;
+            welcomeMessage.textContent = welcome;
+            businessHours.textContent = hours;
+
+            // Update colors
+            document.body.style.background = `linear-gradient(135deg, ${bgColor} 0%, #b8860b 100%)`;
+            document.querySelector('.chat-header').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${config.secondary_action_color || defaultConfig.secondary_action_color} 100%)`;
+            document.querySelector('.chat-header').style.color = bgColor;
+            
+            // Update font
+            document.body.style.fontFamily = `${fontFamily}, -apple-system, BlinkMacSystemFont, sans-serif`;
+            
+            // Update font sizes proportionally
+            companyName.style.fontSize = `${fontSize * 1.4}px`;
+            welcomeMessage.style.fontSize = `${fontSize}px`;
+            businessHours.style.fontSize = `${fontSize * 0.85}px`;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ secondary_action_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (value) => {
+                        if (window.elementSdk) {
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (value) => {
+                        if (window.elementSdk) {
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["welcome_message", config.welcome_message || defaultConfig.welcome_message],
+                ["business_hours", config.business_hours || defaultConfig.business_hours],
+                ["contact_info", config.contact_info || defaultConfig.contact_info]
+            ]);
+        }
+
+        // Utility functions
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function showError(message) {
+            const errorEl = document.createElement('div');
+            errorEl.className = 'error-message';
+            errorEl.textContent = message;
+            messagesContainer.appendChild(errorEl);
+
+            setTimeout(() => {
+                if (errorEl.parentNode) {
+                    errorEl.remove();
+                }
+            }, 5000);
+        }
+
+        async function saveConversation(category, question, answer) {
+            if (conversations.length >= 999) {
+                showError('Conversation limit reached. Please contact support directly.');
+                return;
+            }
+
+            const conversation = {
+                id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+                question: question,
+                answer: answer.replace(/<br>/g, ' '),
+                timestamp: new Date().toISOString(),
+                customer_name: 'Vgen Solutions Visitor',
+                resolved: true
+            };
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(conversation);
+                if (!result.isOk) {
+                    console.error('Failed to save conversation');
+                }
+            }
+        }
+
+        async function handleButtonClick(action, userMessage) {
+            if (isLoading) return;
+            
+            // Add user message
+            addMessage(userMessage, true);
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Wait for realistic response time
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Hide typing indicator
+            hideTypingIndicator();
+            
+            // Handle the action
+            if (action === 'main') {
+                showMainMenu();
+            } else {
+                showResponse(action, userMessage);
+            }
+        }
+
+        function showMainMenu() {
+            const mainMenuMessage = `
+                <p class="message-text">Welcome to Vgen Solutions! We focus on small and medium businesses, providing dedicated support to help you grow together. How can I assist you today?</p>
+                <div class="quick-replies">
+                    <div class="quick-reply" onclick="handleButtonClick('services', 'What services do you offer?')">Our Services</div>
+                    <div class="quick-reply" onclick="handleButtonClick('advertising', 'Tell me about advertising platforms')">Advertising Platforms</div>
+                    <div class="quick-reply" onclick="handleButtonClick('ai_solutions', 'How can AI help my business?')">AI Solutions</div>
+                    <div class="quick-reply" onclick="handleButtonClick('strategy', 'What is your process?')">Our Strategy</div>
+                    <div class="quick-reply" onclick="handleButtonClick('branding', 'Help with branding')">Branding</div>
+                    <div class="quick-reply" onclick="handleButtonClick('branches', 'Tell me about your branches')">Branches & Subsidiaries</div>
+                    <div class="quick-reply" onclick="handleButtonClick('contact', 'How can I contact you?')">Contact Us</div>
+                    <div class="quick-reply" onclick="handleButtonClick('business', 'Business hours and info')">Business Info</div>
+                    <div class="quick-reply" onclick="handleButtonClick('get_started', 'I want to get started')">Get Started</div>
+                </div>
+            `;
+            
+            addBotMessage(mainMenuMessage);
+        }
+
+        function showResponse(action, userMessage) {
+            const category = knowledgeBase[action];
+            if (!category) return;
+
+            const config = window.elementSdk?.config || defaultConfig;
+            let response = category.response
+                .replace(/{business_hours}/g, config.business_hours || defaultConfig.business_hours)
+                .replace(/{contact_info}/g, config.contact_info || defaultConfig.contact_info);
+
+            // Create buttons HTML
+            let buttonsHtml = '';
+            if (category.buttons && category.buttons.length > 0) {
+                buttonsHtml = '<div class="quick-replies">';
+                category.buttons.forEach(button => {
+                    const cleanText = button.text.replace(/[🏠📧🕒⚙️📦↩️💳👤🔧📋📞🔐🗑️🔄🐛💼📢🤖📈🎨🚀🔍📺💼📌🎵⚡📊📝🎯🏆📘💻📌🎵🎨🗣️⭐💻👥]/g, '').trim();
+                    buttonsHtml += `<div class="quick-reply" onclick="handleButtonClick('${button.action}', '${cleanText}')">${cleanText}</div>`;
+                });
+                buttonsHtml += '</div>';
+            }
+
+            const fullMessage = `
+                <p class="message-text">${response}</p>
+                ${buttonsHtml}
+            `;
+
+            addBotMessage(fullMessage);
+            
+            // Save conversation
+            saveConversation(action, userMessage, response.replace(/<br>/g, '\n'));
+        }
+
+        function addBotMessage(htmlContent) {
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message bot';
+            
+            messageEl.innerHTML = `
+                <div class="bot-avatar">🤖</div>
+                <div class="message-bubble">
+                    ${htmlContent}
+                    <div class="message-time">${formatTime(new Date())}</div>
+                </div>
+            `;
+
+            messagesContainer.appendChild(messageEl);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return messageEl;
+        }
+
+        function addMessage(text, isUser = false) {
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const bubbleContent = isUser ? 
+                `<div class="message-bubble">
+                    <p class="message-text">${text}</p>
+                    <div class="message-time">${formatTime(new Date())}</div>
+                </div>` :
+                `<div class="bot-avatar">🤖</div>
+                <div class="message-bubble">
+                    <p class="message-text">${text}</p>
+                    <div class="message-time">${formatTime(new Date())}</div>
+                </div>`;
+
+            messageEl.innerHTML = bubbleContent;
+            messagesContainer.appendChild(messageEl);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return messageEl;
+        }
+
+        function showTypingIndicator() {
+            if (isTyping) return;
+            isTyping = true;
+            
+            const typingEl = document.createElement('div');
+            typingEl.className = 'message bot';
+            typingEl.id = 'typing-indicator';
+            
+            typingEl.innerHTML = `
+                <div class="bot-avatar">🤖</div>
+                <div class="typing-indicator">
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+
+            messagesContainer.appendChild(typingEl);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingEl = document.getElementById('typing-indicator');
+            if (typingEl) {
+                typingEl.remove();
+            }
+            isTyping = false;
+        }
+
+        // Global functions for button interactions
+        window.handleButtonClick = handleButtonClick;
+
+        // Initialize
+        async function init() {
+            try {
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        showError('Failed to connect to support system. Please refresh the page.');
+                    }
+                }
+
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange,
+                        mapToCapabilities,
+                        mapToEditPanelValues
+                    });
+                }
+            } catch (error) {
+                showError('Failed to initialize chat system. Please refresh the page.');
+            }
+        }
+
+        // Start the application
+        init();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ea10fef28cfd8d',t:'MTc2MzE2MDYxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
