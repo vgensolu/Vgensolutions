@@ -459,7 +459,7 @@
     /* Tagline Carousel */
     .tagline-carousel {
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(10, 10, 10, 0.9));
+      background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(10px);
       padding: 1rem 0;
       border-top: 2px solid #EDA800;
@@ -480,21 +480,21 @@
       flex-shrink: 0;
       font-size: 1.1rem;
       font-weight: 800;
-      color: #EDA800;
+      color: #ffffff;
       white-space: nowrap;
       letter-spacing: 1px;
-      text-shadow: 0 0 20px rgba(218, 165, 32, 0.5), 0 0 40px rgba(218, 165, 32, 0.3);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.2);
       animation: glowPulse 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(218, 165, 32, 0.6));
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
     }
 
     @keyframes glowPulse {
       0%, 100% {
-        text-shadow: 0 0 20px rgba(218, 165, 32, 0.5), 0 0 40px rgba(218, 165, 32, 0.3);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.2);
         transform: scale(1);
       }
       50% {
-        text-shadow: 0 0 30px rgba(218, 165, 32, 0.8), 0 0 60px rgba(218, 165, 32, 0.5), 0 0 80px rgba(218, 165, 32, 0.3);
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.3), 0 0 80px rgba(255, 255, 255, 0.2);
         transform: scale(1.02);
       }
     }
@@ -2307,119 +2307,7 @@
      </div>
     </div>
    </div>
-  </section><!-- Logo Carousel -->
-  <div class="logo-carousel">
-   <div class="carousel-track" id="carousel-track">
-    <div class="carousel-item" data-brand="meta">
-     Meta Ads
-    </div>
-    <div class="carousel-item" data-brand="google">
-     Google Analytics
-    </div>
-    <div class="carousel-item" data-brand="shopify">
-     Shopify
-    </div>
-    <div class="carousel-item" data-brand="wordpress">
-     WordPress
-    </div>
-    <div class="carousel-item" data-brand="mailchimp">
-     Mailchimp
-    </div>
-    <div class="carousel-item" data-brand="hubspot">
-     HubSpot
-    </div>
-    <div class="carousel-item" data-brand="salesforce">
-     Salesforce
-    </div>
-    <div class="carousel-item" data-brand="stripe">
-     Stripe
-    </div>
-    <div class="carousel-item" data-brand="chatgpt">
-     ChatGPT
-    </div>
-    <div class="carousel-item" data-brand="claude">
-     Claude AI
-    </div>
-    <div class="carousel-item" data-brand="midjourney">
-     Midjourney
-    </div>
-    <div class="carousel-item" data-brand="zapier">
-     Zapier
-    </div>
-    <div class="carousel-item" data-brand="make">
-     Make
-    </div>
-    <div class="carousel-item" data-brand="hostinger">
-     Hostinger
-    </div>
-    <div class="carousel-item" data-brand="wix">
-     Wix
-    </div>
-    <div class="carousel-item" data-brand="webflow">
-     Webflow
-    </div>
-    <div class="carousel-item" data-brand="canva">
-     Canva
-    </div>
-    <div class="carousel-item" data-brand="notion">
-     Notion AI
-    </div><!-- Duplicate for seamless loop -->
-    <div class="carousel-item" data-brand="meta">
-     Meta Ads
-    </div>
-    <div class="carousel-item" data-brand="google">
-     Google Analytics
-    </div>
-    <div class="carousel-item" data-brand="shopify">
-     Shopify
-    </div>
-    <div class="carousel-item" data-brand="wordpress">
-     WordPress
-    </div>
-    <div class="carousel-item" data-brand="mailchimp">
-     Mailchimp
-    </div>
-    <div class="carousel-item" data-brand="hubspot">
-     HubSpot
-    </div>
-    <div class="carousel-item" data-brand="salesforce">
-     Salesforce
-    </div>
-    <div class="carousel-item" data-brand="stripe">
-     Stripe
-    </div>
-    <div class="carousel-item" data-brand="chatgpt">
-     ChatGPT
-    </div>
-    <div class="carousel-item" data-brand="claude">
-     Claude AI
-    </div>
-    <div class="carousel-item" data-brand="midjourney">
-     Midjourney
-    </div>
-    <div class="carousel-item" data-brand="zapier">
-     Zapier
-    </div>
-    <div class="carousel-item" data-brand="make">
-     Make
-    </div>
-    <div class="carousel-item" data-brand="hostinger">
-     Hostinger
-    </div>
-    <div class="carousel-item" data-brand="wix">
-     Wix
-    </div>
-    <div class="carousel-item" data-brand="webflow">
-     Webflow
-    </div>
-    <div class="carousel-item" data-brand="canva">
-     Canva
-    </div>
-    <div class="carousel-item" data-brand="notion">
-     Notion AI
-    </div>
-   </div>
-  </div><!-- Services Section -->
+  </section><!-- Services Section -->
   <section class="services" id="services">
    <h2 class="section-title">Our Services</h2>
    <div class="services-grid" id="services-grid"></div>
@@ -2948,7 +2836,119 @@
      <p>Let's discuss how we can help transform your digital presence and achieve your business goals.</p><button class="cta-button" onclick="openContactForm()">Schedule a Consultation</button>
     </div>
    </div>
-  </section><!-- Tagline Carousel -->
+  </section><!-- Logo Carousel -->
+  <div class="logo-carousel">
+   <div class="carousel-track" id="carousel-track">
+    <div class="carousel-item" data-brand="meta">
+     Meta Ads
+    </div>
+    <div class="carousel-item" data-brand="google">
+     Google Analytics
+    </div>
+    <div class="carousel-item" data-brand="shopify">
+     Shopify
+    </div>
+    <div class="carousel-item" data-brand="wordpress">
+     WordPress
+    </div>
+    <div class="carousel-item" data-brand="mailchimp">
+     Mailchimp
+    </div>
+    <div class="carousel-item" data-brand="hubspot">
+     HubSpot
+    </div>
+    <div class="carousel-item" data-brand="salesforce">
+     Salesforce
+    </div>
+    <div class="carousel-item" data-brand="stripe">
+     Stripe
+    </div>
+    <div class="carousel-item" data-brand="chatgpt">
+     ChatGPT
+    </div>
+    <div class="carousel-item" data-brand="claude">
+     Claude AI
+    </div>
+    <div class="carousel-item" data-brand="midjourney">
+     Midjourney
+    </div>
+    <div class="carousel-item" data-brand="zapier">
+     Zapier
+    </div>
+    <div class="carousel-item" data-brand="make">
+     Make
+    </div>
+    <div class="carousel-item" data-brand="hostinger">
+     Hostinger
+    </div>
+    <div class="carousel-item" data-brand="wix">
+     Wix
+    </div>
+    <div class="carousel-item" data-brand="webflow">
+     Webflow
+    </div>
+    <div class="carousel-item" data-brand="canva">
+     Canva
+    </div>
+    <div class="carousel-item" data-brand="notion">
+     Notion AI
+    </div><!-- Duplicate for seamless loop -->
+    <div class="carousel-item" data-brand="meta">
+     Meta Ads
+    </div>
+    <div class="carousel-item" data-brand="google">
+     Google Analytics
+    </div>
+    <div class="carousel-item" data-brand="shopify">
+     Shopify
+    </div>
+    <div class="carousel-item" data-brand="wordpress">
+     WordPress
+    </div>
+    <div class="carousel-item" data-brand="mailchimp">
+     Mailchimp
+    </div>
+    <div class="carousel-item" data-brand="hubspot">
+     HubSpot
+    </div>
+    <div class="carousel-item" data-brand="salesforce">
+     Salesforce
+    </div>
+    <div class="carousel-item" data-brand="stripe">
+     Stripe
+    </div>
+    <div class="carousel-item" data-brand="chatgpt">
+     ChatGPT
+    </div>
+    <div class="carousel-item" data-brand="claude">
+     Claude AI
+    </div>
+    <div class="carousel-item" data-brand="midjourney">
+     Midjourney
+    </div>
+    <div class="carousel-item" data-brand="zapier">
+     Zapier
+    </div>
+    <div class="carousel-item" data-brand="make">
+     Make
+    </div>
+    <div class="carousel-item" data-brand="hostinger">
+     Hostinger
+    </div>
+    <div class="carousel-item" data-brand="wix">
+     Wix
+    </div>
+    <div class="carousel-item" data-brand="webflow">
+     Webflow
+    </div>
+    <div class="carousel-item" data-brand="canva">
+     Canva
+    </div>
+    <div class="carousel-item" data-brand="notion">
+     Notion AI
+    </div>
+   </div>
+  </div><!-- Tagline Carousel -->
   <div class="tagline-carousel">
    <div class="tagline-track">
     <div class="tagline-item">
