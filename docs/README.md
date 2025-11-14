@@ -47,14 +47,16 @@ Includes:
 
 - **[Website Status Report](guides/WEBSITE_STATUS_REPORT.md)** - Comprehensive website validation and deployment status
 - **[Email Templates Guide](guides/EMAIL_TEMPLATES.md)** - How to use and customize email templates
+- **[Cache & Performance Optimization](guides/CACHE_OPTIMIZATION.md)** - Cache management and performance guide
 
 ### Developer Guides
+
+- **[Quick Reference](QUICK_REFERENCE.md)** - Fast access to common tasks and information
 
 Coming soon:
 - Local development setup
 - Deployment guide
 - Testing guide
-- Performance optimization
 
 ## 🛠️ Services Documentation
 
