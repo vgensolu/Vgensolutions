@@ -389,32 +389,20 @@
      <div class="message-bubble">
       <p class="message-text">Welcome to Vgen Solutions! We focus on small and medium businesses, providing dedicated support to help you grow together. How can I assist you today?</p>
       <div class="quick-replies" id="mainButtons">
-       <div class="quick-reply" onclick="handleButtonClick('services', 'What services do you offer?')">
-        Our Services
+       <div class="quick-reply" onclick="handleButtonClick('business_info', 'Tell me about Vgen Solutions')">
+        Business Info
        </div>
-       <div class="quick-reply" onclick="handleButtonClick('advertising', 'Tell me about advertising platforms')">
-        Advertising Platforms
+       <div class="quick-reply" onclick="handleButtonClick('services_menu', 'What services do you offer?')">
+        Services
        </div>
-       <div class="quick-reply" onclick="handleButtonClick('ai_solutions', 'How can AI help my business?')">
-        AI Solutions
+       <div class="quick-reply" onclick="handleButtonClick('products_menu', 'What products do you have?')">
+        Products
        </div>
-       <div class="quick-reply" onclick="handleButtonClick('strategy', 'What is your process?')">
-        Our Strategy
-       </div>
-       <div class="quick-reply" onclick="handleButtonClick('branding', 'Help with branding')">
-        Branding
-       </div>
-       <div class="quick-reply" onclick="handleButtonClick('faqs', 'Frequently Asked Questions')">
+       <div class="quick-reply" onclick="handleButtonClick('faqs_menu', 'I have questions')">
         FAQs
        </div>
        <div class="quick-reply" onclick="handleButtonClick('contact', 'How can I contact you?')">
         Contact Us
-       </div>
-       <div class="quick-reply" onclick="handleButtonClick('business', 'Business hours and info')">
-        Business Info
-       </div>
-       <div class="quick-reply" onclick="handleButtonClick('get_started', 'I want to get started')">
-        Get Started
        </div>
       </div>
      </div>
@@ -443,531 +431,414 @@
 
         // Comprehensive Vgen Solutions knowledge base
         const knowledgeBase = {
-            'business': {
-                response: "Vgen Solutions focuses on small and medium businesses, providing dedicated support to help you grow together. We understand your unique challenges and deliver personalized solutions that drive real results.<br><br>Our business hours are {business_hours}. We're committed to fast delivery, results-driven solutions, enterprise-grade security, and innovative technology.",
+            'business_info': {
+                response: "About Vgen Solutions<br><br>Vgen Solutions is a digital marketing and technology solutions provider specializing in helping small and medium businesses succeed online. We offer professional services at affordable prices, with flexible solutions tailored to your budget.<br><br><strong>Location:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines (Operating remotely to support clients globally)<br><br><strong>Contact Information:</strong><br>• Email: contact@vgensolutions.com<br>• Phone: +1 (555) 123-4567<br><br><strong>Business Hours:</strong> We operate remotely and are available for consultations by appointment. Contact us to schedule a meeting at your convenience.",
                 buttons: [
-                    { text: "⚙️ Our Services", action: "services" },
-                    { text: "📞 Contact Us", action: "contact" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
+                    { text: "Services", action: "services_menu" },
+                    { text: "Products", action: "products_menu" },
+                    { text: "FAQs", action: "faqs_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'services_menu': {
+                response: "Our Services<br><br>What would you like to know about?",
+                buttons: [
+                    { text: "Email Setup & Management", action: "service_email" },
+                    { text: "Web Development", action: "service_web" },
+                    { text: "Digital Advertising", action: "service_ads" },
+                    { text: "Growth Strategy", action: "service_growth" },
+                    { text: "AI Content Generation", action: "service_ai" },
+                    { text: "Headless Automations", action: "service_automation" },
+                    { text: "HR Solutions", action: "service_hr" },
+                    { text: "Advanced HTML Integration", action: "service_html" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_email': {
+                response: "Email Setup & Management<br><br>Professional email solutions with custom domains and advanced security.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_web': {
+                response: "Web Development<br><br>Custom websites and web applications built with modern technologies.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_ads': {
+                response: "Digital Advertising<br><br>Strategic ad campaigns across Meta, Google, and other platforms.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_growth': {
+                response: "Growth Strategy<br><br>Data-driven strategies to scale your business and increase revenue.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_ai': {
+                response: "AI Content Generation<br><br>Automated content creation powered by advanced AI technology.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_automation': {
+                response: "Headless Automations<br><br>Intelligent browser automation for repetitive tasks and workflows.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_hr': {
+                response: "HR Solutions<br><br>Expert local and international labor law consultation and comprehensive HR documentation services.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'service_html': {
+                response: "Advanced HTML Integration<br><br>Professional email HTML templates and custom web integration with responsive designs, formatting, and seamless image integration.",
+                buttons: [
+                    { text: "View All Services", action: "services_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'products_menu': {
+                response: "Our Products<br><br>What would you like to learn about?",
+                buttons: [
+                    { text: "Custom Website Packages", action: "product_websites" },
+                    { text: "Email Marketing Templates", action: "product_email_templates" },
+                    { text: "Automation Bundles", action: "product_automation" },
+                    { text: "Digital Marketing Courses", action: "product_courses" },
+                    { text: "HR Documentation Templates", action: "product_hr_docs" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'product_websites': {
+                response: "Custom Website Packages<br><br>Professional website development packages tailored to your business needs, from landing pages to full e-commerce solutions.",
+                buttons: [
+                    { text: "View All Products", action: "products_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'product_email_templates': {
+                response: "Email Marketing Templates<br><br>Pre-designed, customizable email templates for newsletters, promotions, and automated campaigns.",
+                buttons: [
+                    { text: "View All Products", action: "products_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'product_automation': {
+                response: "Automation Bundles<br><br>Ready-to-deploy automation solutions for common business tasks like data entry, reporting, and social media management.",
+                buttons: [
+                    { text: "View All Products", action: "products_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'product_courses': {
+                response: "Digital Marketing Courses<br><br>Self-paced training courses and resources to help you master digital marketing strategies for your business.",
+                buttons: [
+                    { text: "View All Products", action: "products_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'product_hr_docs': {
+                response: "HR Documentation Templates<br><br>Professional HR templates including employment contracts, handbooks, and policy documents compliant with labor laws.",
+                buttons: [
+                    { text: "View All Products", action: "products_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faqs_menu': {
+                response: "Frequently Asked Questions<br><br>What would you like to know?",
+                buttons: [
+                    { text: "What services do you offer?", action: "faq_1" },
+                    { text: "Do you work with small businesses?", action: "faq_2" },
+                    { text: "How is your pricing structured?", action: "faq_3" },
+                    { text: "Can you work within my budget?", action: "faq_4" },
+                    { text: "More Questions", action: "faqs_menu_2" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faqs_menu_2': {
+                response: "More Frequently Asked Questions<br><br>What would you like to know?",
+                buttons: [
+                    { text: "How long does a project take?", action: "faq_5" },
+                    { text: "Do I need technical knowledge?", action: "faq_6" },
+                    { text: "Professional email benefits?", action: "faq_7" },
+                    { text: "Website improvement help?", action: "faq_8" },
+                    { text: "More Questions", action: "faqs_menu_3" },
+                    { text: "Back to FAQs", action: "faqs_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faqs_menu_3': {
+                response: "Additional Frequently Asked Questions<br><br>What would you like to know?",
+                buttons: [
+                    { text: "Website ranking on Google?", action: "faq_9" },
+                    { text: "Meta Ads vs Google Ads?", action: "faq_10" },
+                    { text: "Advertising budget?", action: "faq_11" },
+                    { text: "Immediate advertising results?", action: "faq_12" },
+                    { text: "More Questions", action: "faqs_menu_4" },
+                    { text: "Back to FAQs", action: "faqs_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faqs_menu_4': {
+                response: "More Frequently Asked Questions<br><br>What would you like to know?",
+                buttons: [
+                    { text: "What is a growth strategy?", action: "faq_13" },
+                    { text: "How does AI content work?", action: "faq_14" },
+                    { text: "AI content quality?", action: "faq_15" },
+                    { text: "What can automation handle?", action: "faq_16" },
+                    { text: "More Questions", action: "faqs_menu_5" },
+                    { text: "Back to FAQs", action: "faqs_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faqs_menu_5': {
+                response: "Additional Frequently Asked Questions<br><br>What would you like to know?",
+                buttons: [
+                    { text: "Automation maintenance?", action: "faq_17" },
+                    { text: "Ongoing support offered?", action: "faq_18" },
+                    { text: "What industries do you serve?", action: "faq_19" },
+                    { text: "Help for new businesses?", action: "faq_20" },
+                    { text: "More Questions", action: "faqs_menu_6" },
+                    { text: "Back to FAQs", action: "faqs_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faqs_menu_6': {
+                response: "Final Frequently Asked Questions<br><br>What would you like to know?",
+                buttons: [
+                    { text: "How do I get started?", action: "faq_21" },
+                    { text: "Not satisfied with results?", action: "faq_22" },
+                    { text: "Payment plans available?", action: "faq_23" },
+                    { text: "Why choose Vgen Solutions?", action: "faq_24" },
+                    { text: "Back to FAQs", action: "faqs_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_1': {
+                response: "What services do you offer?<br><br>We offer email setup & management, custom web development, digital advertising (Meta & Google Ads), growth strategy consulting, AI content generation, and headless browser automation solutions.",
+                buttons: [
+                    { text: "View Services", action: "services_menu" },
+                    { text: "More FAQs", action: "faqs_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_2': {
+                response: "Do you work with small businesses and startups?<br><br>Absolutely! Vgen Solutions specializes in supporting small and medium businesses. We understand budget constraints and work with you to create affordable solutions that don't compromise on quality. We customize everything to fit your budget while delivering the same results as expensive agencies.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_3': {
+                response: "How is your pricing structured?<br><br>We believe affordability is crucial for growing businesses. Our pricing is completely flexible and customized to your budget. We'll work with you to find solutions that fit your financial situation without sacrificing quality or results. Every business is different, so we tailor packages specifically for you.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_4': {
+                response: "Can you work within my limited budget?<br><br>Yes! We're here to help small businesses succeed, regardless of budget size. We'll find creative ways to deliver maximum value within your constraints. Our goal is to move mountains for you, not break your bank. Quality and affordability can coexist—it's all about smart execution.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_5': {
+                response: "How long does a typical project take?<br><br>Timelines vary by project: Email setups take 1-3 days, websites 2-8 weeks, ad campaigns launch within 1 week, and automation projects range from 1-4 weeks. We'll provide a detailed timeline during our consultation and work efficiently to meet your deadlines.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_2" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_6': {
+                response: "Do I need technical knowledge to work with you?<br><br>Not at all! We handle all the technical aspects and explain everything in simple terms. Our goal is to make technology accessible and easy for you. We'll guide you through every step and provide training so you feel confident managing your digital assets.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_2" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_7': {
+                response: "What makes your email setup different from free email services?<br><br>Professional email with your own domain (you@yourbusiness.com) builds trust and credibility. We set up secure, reliable email systems with advanced features, spam protection, and proper authentication. It's a small investment that makes a huge difference in how customers perceive your business.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_2" },
+                    { text: "Email Setup Service", action: "service_email" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_8': {
+                response: "Can you help if I already have a website that needs improvement?<br><br>Absolutely! We can audit your existing website, identify issues, and make improvements. Whether it's speed optimization, design updates, mobile responsiveness, or adding new features—we'll enhance what you have or rebuild if needed.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_2" },
+                    { text: "Web Development Service", action: "service_web" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_9': {
+                response: "How do you ensure my website will rank on Google?<br><br>We build all websites with SEO best practices: fast loading speeds, mobile optimization, proper meta tags, structured data, and quality content. We also offer ongoing SEO services to improve rankings over time. Good SEO is a marathon, not a sprint, but we set you up for success from day one.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_3" },
+                    { text: "Web Development Service", action: "service_web" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_10': {
+                response: "What's the difference between Meta Ads and Google Ads?<br><br>Meta Ads (Facebook/Instagram) are great for brand awareness and reaching people based on interests and behaviors. Google Ads capture people actively searching for your products/services. We'll recommend the best platform based on your goals, audience, and budget—or use both strategically.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_3" },
+                    { text: "Digital Advertising Service", action: "service_ads" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_11': {
+                response: "How much should I spend on advertising?<br><br>Ad budgets vary widely based on your industry, goals, and competition. We work with businesses spending anywhere from small daily budgets to larger campaigns. We'll help you determine a realistic budget that can generate results and scale as you grow. Every dollar is optimized for maximum return.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_3" },
+                    { text: "Digital Advertising Service", action: "service_ads" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_12': {
+                response: "Will I see immediate results from advertising?<br><br>Digital ads can generate traffic quickly, but optimal results take time. We typically see initial data within 1-2 weeks and meaningful results within 30-60 days as we optimize campaigns. We focus on sustainable, long-term growth rather than quick wins that don't last.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_3" },
+                    { text: "Digital Advertising Service", action: "service_ads" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_13': {
+                response: "What is a growth strategy and do I need one?<br><br>A growth strategy is a roadmap for scaling your business. It identifies opportunities, prioritizes actions, and aligns your team toward clear goals. If you're feeling stuck, unsure where to focus, or ready to scale, a growth strategy provides clarity and direction to maximize your efforts.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_4" },
+                    { text: "Growth Strategy Service", action: "service_growth" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_14': {
+                response: "How does AI content generation work?<br><br>We use advanced AI tools trained on your brand voice, industry, and audience. The AI generates blog posts, social media content, product descriptions, and more. Our team reviews and refines everything to ensure quality, accuracy, and authenticity. It's like having a content team working 24/7.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_4" },
+                    { text: "AI Content Service", action: "service_ai" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_15': {
+                response: "Will AI-generated content sound robotic or generic?<br><br>Not when done right! We train AI models on your unique brand voice and style. Our team reviews and edits all content to ensure it sounds natural, engaging, and authentic. The result is high-quality content that resonates with your audience—at a fraction of the time and cost.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_4" },
+                    { text: "AI Content Service", action: "service_ai" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_16': {
+                response: "What tasks can headless automation handle?<br><br>Headless automation can handle repetitive browser tasks: data entry, form submissions, web scraping, report generation, social media posting, inventory monitoring, lead generation, and more. If you're doing it manually in a browser repeatedly, we can probably automate it.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_4" },
+                    { text: "Automation Service", action: "service_automation" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_17': {
+                response: "Is automation difficult to maintain?<br><br>Not with our support! We build robust automations that handle errors gracefully and adapt to changes. We provide ongoing monitoring and maintenance to ensure everything runs smoothly. You'll save time without worrying about technical issues.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_5" },
+                    { text: "Automation Service", action: "service_automation" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_18': {
+                response: "Do you offer ongoing support after project completion?<br><br>Yes! We provide comprehensive support and maintenance packages for all services. This includes technical support, performance monitoring, updates, optimization, and troubleshooting. We're here for the long haul—your success is our success.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_5" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_19': {
+                response: "What industries do you work with?<br><br>We work with businesses across all industries: e-commerce, professional services, healthcare, education, technology, retail, hospitality, real estate, and more. Our solutions are customized to meet the unique needs and regulations of each industry.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_5" },
+                    { text: "View Services", action: "services_menu" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_20': {
+                response: "Can you help if I'm just starting my business?<br><br>Absolutely! We love working with new businesses. We'll help you establish a strong digital foundation from day one: professional email, website, branding, and marketing strategy. Starting right is easier and more affordable than fixing mistakes later. We're here to guide you every step of the way.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_5" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_21': {
+                response: "How do I get started?<br><br>Simply reach out via WhatsApp, email, or our contact form. We'll schedule a free consultation to understand your needs, goals, and budget. Then we'll create a customized proposal that outlines exactly how we can help. No pressure, no obligations—just honest advice and solutions.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_6" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_22': {
+                response: "What if I'm not satisfied with the results?<br><br>Your satisfaction is our priority. We work closely with you throughout every project, incorporating your feedback and making revisions until you're happy. We're committed to delivering results that exceed expectations. If something isn't working, we'll make it right.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_6" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_23': {
+                response: "Do you offer payment plans or flexible payment options?<br><br>Yes! We understand cash flow challenges for small businesses. We offer flexible payment plans and structures that work with your budget. Our goal is to make quality digital services accessible to everyone, not just businesses with large budgets. Let's discuss what works for you.",
+                buttons: [
+                    { text: "More FAQs", action: "faqs_menu_6" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_24': {
+                response: "Why should I choose Vgen Solutions over other agencies?<br><br>We specialize in small and medium businesses. We're not a faceless agency—we're your dedicated partner who genuinely cares about your success. We offer big-agency quality at small-business prices, with personalized attention and flexible solutions. We move mountains to help you grow, regardless of your budget.",
+                buttons: [
+                    { text: "Back to FAQs", action: "faqs_menu" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "Back to Main Menu", action: "main" }
                 ]
             },
             'contact': {
-                response: "You can reach us at {contact_info}. We typically respond within 24 hours during business days. For urgent matters, please mention 'URGENT' in your subject line.<br><br>We're here to provide seamless support and smart solutions for your business needs.",
+                response: "Contact Information<br><br><strong>Email:</strong> contact@vgensolutions.com<br><strong>Phone:</strong> +1 (555) 123-4567<br><strong>Address:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines<br><br>We typically respond within 24 hours during business days. For urgent matters, please mention 'URGENT' in your subject line.<br><br>Operating remotely to support clients globally. Contact us to schedule a meeting at your convenience.",
                 buttons: [
-                    { text: "🕒 Business Info", action: "business" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'services': {
-                response: "Here are our comprehensive services designed for small and medium businesses:",
-                buttons: [
-                    { text: "📧 Email Setup & Management", action: "email_service" },
-                    { text: "🌐 Web Development", action: "web_development" },
-                    { text: "📢 Digital Advertising", action: "digital_advertising" },
-                    { text: "📈 Growth Strategy", action: "growth_strategy" },
-                    { text: "🤖 AI Content Generation", action: "ai_content" },
-                    { text: "⚡ Headless Automations", action: "automations" },
-                    { text: "👥 HR Solutions", action: "hr_solutions" },
-                    { text: "💻 Advanced HTML Integration", action: "html_integration" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'email_service': {
-                response: "Email Setup & Management<br><br>Professional email solutions with custom domains and advanced security. We help you establish a professional email presence that builds trust with your customers and protects your business communications.<br><br><strong>Sample Quote:</strong> \"Professional email setup with custom domain, security features, and 24/7 support - Starting at $299\"<br><br><strong>Template Includes:</strong> Custom domain setup, professional email addresses, spam protection, mobile sync, and training materials.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "All Services", action: "services" },
-                    { text: "Get Started", action: "get_started" },
+                    { text: "Business Info", action: "business_info" },
+                    { text: "Services", action: "services_menu" },
                     { text: "Back to Main Menu", action: "main" }
                 ]
             },
-            'web_development': {
-                response: "Web Development<br><br>Custom websites and web applications built with modern technologies. We create responsive, fast-loading websites that convert visitors into customers and grow with your business.<br><br><strong>Sample Quote:</strong> \"Professional business website with responsive design, SEO optimization, and content management - Starting at $1,299\"<br><br><strong>Template Includes:</strong> 5-page responsive website, contact forms, SEO setup, mobile optimization, and 3 months support.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "All Services", action: "services" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'digital_advertising': {
-                response: "Digital Advertising<br><br>Strategic ad campaigns across Meta, Google, and other platforms. We help you reach your ideal customers with targeted campaigns that maximize ROI and drive real business results.<br><br><strong>Sample Quote:</strong> \"Complete digital advertising campaign setup and management - Starting at $899/month (plus ad spend)\"<br><br><strong>Template Includes:</strong> Campaign strategy, ad creation, audience targeting, performance tracking, and monthly optimization reports.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "Advertising Platforms", action: "advertising" },
-                    { text: "All Services", action: "services" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'growth_strategy': {
-                response: "Growth Strategy<br><br>Data-driven strategies to scale your business and increase revenue. We analyze your market, competitors, and opportunities to create a roadmap for sustainable growth.<br><br><strong>Sample Quote:</strong> \"Comprehensive business growth strategy and implementation plan - Starting at $1,999\"<br><br><strong>Template Includes:</strong> Market analysis, competitor research, growth roadmap, KPI framework, and quarterly review sessions.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "Our Process", action: "strategy" },
-                    { text: "All Services", action: "services" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_content': {
-                response: "AI Content Generation<br><br>Automated content creation powered by advanced AI technology. Generate high-quality blog posts, social media content, and marketing copy in minutes while maintaining consistency and scaling your content production.<br><br><strong>Sample Quote:</strong> \"AI-powered content generation system setup and training - Starting at $699\"<br><br><strong>Template Includes:</strong> AI tool setup, content templates, brand voice training, workflow automation, and team training sessions.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "AI Solutions", action: "ai_solutions" },
-                    { text: "All Services", action: "services" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'automations': {
-                response: "Headless Automations<br><br>Intelligent browser automation for repetitive tasks and workflows. Free up your team's time by automating data entry, customer responses, and routine processes so you can focus on growth.<br><br><strong>Sample Quote:</strong> \"Custom automation solution for repetitive business tasks - Starting at $1,499\"<br><br><strong>Template Includes:</strong> Process analysis, automation setup, testing phase, documentation, and staff training for automated workflows.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "AI Solutions", action: "ai_solutions" },
-                    { text: "All Services", action: "services" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'hr_solutions': {
-                response: "HR Solutions<br><br>Expert local and international labor law consultation and comprehensive HR documentation services. We help you navigate complex employment regulations and create proper HR frameworks for your growing business.<br><br><strong>Sample Quote:</strong> \"Complete HR documentation and compliance package - Starting at $799\"<br><br><strong>Template Includes:</strong> Employee handbook, contract templates, policy documents, compliance checklists, and legal consultation sessions.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "All Services", action: "services" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'html_integration': {
-                response: "Advanced HTML Integration<br><br>Professional email HTML templates and custom web integration with responsive designs, formatting, and seamless image integration. Perfect for creating stunning email campaigns and web experiences.<br><br><strong>Sample Quote:</strong> \"Custom HTML email templates and web integration - Starting at $499\"<br><br><strong>Template Includes:</strong> 5 responsive email templates, web integration code, cross-platform testing, and implementation guide.",
-                buttons: [
-                    { text: "Contact Us for Quote", action: "contact" },
-                    { text: "All Services", action: "services" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'advertising': {
-                response: "Master Every Advertising Platform<br><br>Each platform has unique strengths. We help you choose the right mix and maximize your ROI across all channels:",
-                buttons: [
-                    { text: "📘 Meta Ads (Facebook & Instagram)", action: "meta_ads" },
-                    { text: "🔍 Google Ads", action: "google_ads" },
-                    { text: "📺 YouTube Ads", action: "youtube_ads" },
-                    { text: "💼 LinkedIn Ads", action: "linkedin_ads" },
-                    { text: "📌 Pinterest Ads", action: "pinterest_ads" },
-                    { text: "🎵 TikTok Ads", action: "tiktok_ads" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'meta_ads': {
-                response: "Meta Ads (Facebook & Instagram)<br><br>Best For: Brand awareness, community building, visual storytelling<br><br>• 3 billion+ active users worldwide<br>• Advanced audience targeting by interests, behaviors, demographics<br>• Perfect for B2C, e-commerce, and lifestyle brands<br>• Instagram Stories & Reels for engaging younger audiences<br><br>★ Pro Tip: Use carousel ads to showcase multiple products and retarget website visitors for 3x higher conversion rates.",
-                buttons: [
-                    { text: "📢 All Platforms", action: "advertising" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'google_ads': {
-                response: "Google Ads<br><br>Best For: High-intent searches, lead generation, local businesses<br><br>• Capture customers actively searching for your products<br>• Search, Display, Shopping, and YouTube ads<br>• Ideal for B2B, services, and high-consideration purchases<br>• Local campaigns drive foot traffic to physical stores<br><br>★ Pro Tip: Focus on long-tail keywords with lower competition and higher conversion intent to maximize your budget.",
-                buttons: [
-                    { text: "📢 All Platforms", action: "advertising" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'youtube_ads': {
-                response: "YouTube Ads<br><br>Best For: Video storytelling, product demos, brand building<br><br>• 2 billion+ logged-in users monthly<br>• Skippable, non-skippable, and bumper ads<br>• Great for tutorials, testimonials, and explainer videos<br>• Target by interests, topics, and specific channels<br><br>★ Pro Tip: Hook viewers in the first 5 seconds and include a clear call-to-action to drive engagement.",
-                buttons: [
-                    { text: "📢 All Platforms", action: "advertising" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'linkedin_ads': {
-                response: "LinkedIn Ads<br><br>Best For: B2B marketing, professional services, recruitment<br><br>• 900 million+ professionals and decision-makers<br>• Target by job title, company size, industry, seniority<br>• Perfect for lead generation, webinars, and whitepapers<br>• Highest quality B2B leads across all platforms<br><br>★ Pro Tip: Use Sponsored InMail to reach decision-makers directly with personalized messages.",
-                buttons: [
-                    { text: "📢 All Platforms", action: "advertising" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'pinterest_ads': {
-                response: "Pinterest Ads<br><br>Best For: E-commerce, DIY, home decor, fashion, food<br><br>• 450 million+ users with high purchase intent<br>• Visual discovery platform for inspiration<br>• 83% of users make purchases based on Pinterest content<br>• Long content lifespan (pins stay relevant for months)<br><br>★ Pro Tip: Create vertical pins with clear product images and use rich pins to add extra details.",
-                buttons: [
-                    { text: "📢 All Platforms", action: "advertising" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'tiktok_ads': {
-                response: "TikTok Ads<br><br>Best For: Gen Z & Millennials, viral content, brand awareness<br><br>• 1 billion+ highly engaged users<br>• Short-form video content with massive reach potential<br>• Perfect for trendy, authentic, and entertaining content<br>• Lower CPM compared to other platforms<br><br>★ Pro Tip: Embrace trends, use native-looking content, and partner with creators for authentic reach.",
-                buttons: [
-                    { text: "📢 All Platforms", action: "advertising" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_solutions': {
-                response: "Harness the Power of AI<br><br>Artificial Intelligence is revolutionizing how businesses operate. Here's what you need to know to stay ahead:",
-                buttons: [
-                    { text: "⚡ Automate Tasks", action: "ai_automation" },
-                    { text: "📊 Data-Driven Decisions", action: "ai_data" },
-                    { text: "📝 Content at Scale", action: "ai_content_scale" },
-                    { text: "🎯 Personalization", action: "ai_personalization" },
-                    { text: "🏆 Competitive Edge", action: "ai_advantage" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_automation': {
-                response: "Automate Repetitive Tasks<br><br>Free up your team's time by automating data entry, customer responses, and routine workflows. AI handles the mundane so you can focus on growth.<br><br>Our headless automation solutions can save your business 20-30 hours per week on repetitive tasks.",
-                buttons: [
-                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_data': {
-                response: "Data-Driven Decisions<br><br>AI analyzes customer behavior, market trends, and performance metrics to provide actionable insights that drive smarter business decisions.<br><br>Make informed choices backed by data, not guesswork.",
-                buttons: [
-                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_content_scale': {
-                response: "Content at Scale<br><br>Generate high-quality blog posts, social media content, and marketing copy in minutes. Maintain consistency while scaling your content production.<br><br>Our AI content generation can produce weeks of content in hours.",
-                buttons: [
-                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_personalization': {
-                response: "Personalization<br><br>Deliver personalized experiences to each customer based on their behavior, preferences, and history. Increase engagement and conversions.<br><br>Personalized experiences can increase conversion rates by up to 202%.",
-                buttons: [
-                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_advantage': {
-                response: "Competitive Edge<br><br>Stay ahead of competitors by adopting AI early. Businesses using AI see 30-40% efficiency gains and faster time-to-market.<br><br>Don't get left behind - embrace AI to future-proof your business.",
-                buttons: [
-                    { text: "🤖 All AI Solutions", action: "ai_solutions" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'strategy': {
-                response: "Our 4-Step Strategy Process<br><br>We follow a proven methodology to ensure your project's success:",
-                buttons: [
-                    { text: "🔍 1. Discovery", action: "discovery" },
-                    { text: "📋 2. Planning", action: "planning" },
-                    { text: "⚡ 3. Execution", action: "execution" },
-                    { text: "📈 4. Optimization", action: "optimization" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'discovery': {
-                response: "1. Discovery<br><br>We analyze your business needs and goals to create a tailored strategy. This phase includes:<br><br>• Business analysis and goal setting<br>• Market research and competitor analysis<br>• Target audience identification<br>• Current system assessment<br>• Opportunity identification",
-                buttons: [
-                    { text: "📋 Our Full Process", action: "strategy" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'planning': {
-                response: "2. Planning<br><br>Detailed roadmap with milestones and deliverables for your project. This includes:<br><br>• Project timeline and milestones<br>• Resource allocation<br>• Technology stack selection<br>• Risk assessment and mitigation<br>• Success metrics definition",
-                buttons: [
-                    { text: "📋 Our Full Process", action: "strategy" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'execution': {
-                response: "3. Execution<br><br>Expert implementation with regular updates and quality assurance. We ensure:<br><br>• Fast delivery with quality standards<br>• Regular progress updates<br>• Continuous quality assurance<br>• Transparent communication<br>• Agile methodology implementation",
-                buttons: [
-                    { text: "📋 Our Full Process", action: "strategy" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'optimization': {
-                response: "4. Optimization<br><br>Continuous monitoring and improvements for maximum performance. This includes:<br><br>• Performance monitoring and analytics<br>• A/B testing and optimization<br>• Regular maintenance and updates<br>• ROI measurement and reporting<br>• Ongoing support and improvements",
-                buttons: [
-                    { text: "📋 Our Full Process", action: "strategy" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'branches': {
-                response: "Vgen Solutions Global Network<br><br>Our expanding network of branches and subsidiaries allows us to serve clients worldwide while maintaining local expertise and personalized service:",
-                buttons: [
-                    { text: "Main Headquarters", action: "headquarters" },
-                    { text: "Regional Offices", action: "regional_offices" },
-                    { text: "Digital Marketing Division", action: "digital_division" },
-                    { text: "AI Solutions Subsidiary", action: "ai_subsidiary" },
-                    { text: "International Partners", action: "international_partners" },
-                    { text: "Future Expansion Plans", action: "expansion_plans" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'headquarters': {
-                response: "Vgen Solutions Headquarters<br><br>Location: Subec Pagudpud, Ilocos Norte 2919, Philippines<br><br>Our main headquarters serves as the central hub for all operations, housing our core development team, strategic planning division, and executive leadership. From here, we coordinate global projects and maintain our high standards of service delivery.<br><br>Services: Full-service digital solutions, project management, strategic consulting, and 24/7 technical support.",
-                buttons: [
-                    { text: "Contact Headquarters", action: "contact" },
-                    { text: "All Branches", action: "branches" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'regional_offices': {
-                response: "Regional Service Centers<br><br>North America Division: Remote operations serving US and Canadian markets<br>• Specializes in e-commerce solutions and growth marketing<br>• Local business hours: EST/PST coverage<br><br>European Division: Remote operations serving EU markets<br>• Focus on GDPR-compliant solutions and multilingual support<br>• Local business hours: CET coverage<br><br>Asia-Pacific Division: Expanding presence across Southeast Asia<br>• Expertise in mobile-first solutions and regional platforms<br>• Local business hours: Multiple timezone coverage",
-                buttons: [
-                    { text: "Contact Regional Office", action: "contact" },
-                    { text: "All Branches", action: "branches" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'digital_division': {
-                response: "Vgen Digital Marketing Division<br><br>Our specialized digital marketing subsidiary focuses exclusively on advertising platforms and growth strategies:<br><br>Core Services:<br>• Meta Ads (Facebook & Instagram) management<br>• Google Ads optimization and strategy<br>• Multi-platform advertising campaigns<br>• Performance analytics and reporting<br>• Conversion rate optimization<br><br>This division handles over 200+ active advertising campaigns across various industries, delivering an average ROI improvement of 150% for our clients.",
-                buttons: [
-                    { text: "Contact Digital Division", action: "contact" },
-                    { text: "Advertising Platforms", action: "advertising" },
-                    { text: "All Branches", action: "branches" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'ai_subsidiary': {
-                response: "Vgen AI Solutions Subsidiary<br><br>Our cutting-edge AI subsidiary specializes in artificial intelligence and automation solutions for businesses:<br><br>Specialized Services:<br>• AI content generation systems<br>• Headless browser automation<br>• Machine learning implementations<br>• Chatbot development and deployment<br>• Process automation consulting<br>• Custom AI model training<br><br>This subsidiary works with Fortune 500 companies and innovative startups to implement AI solutions that drive efficiency and growth.",
-                buttons: [
-                    { text: "Contact AI Division", action: "contact" },
-                    { text: "AI Solutions", action: "ai_solutions" },
-                    { text: "All Branches", action: "branches" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'international_partners': {
-                response: "International Partnership Network<br><br>We maintain strategic partnerships with leading technology companies and service providers worldwide:<br><br>Technology Partners:<br>• Cloud infrastructure providers (AWS, Google Cloud, Azure)<br>• Marketing platform integrations (HubSpot, Salesforce, Mailchimp)<br>• E-commerce platforms (Shopify, WooCommerce, Magento)<br><br>Service Partners:<br>• Legal compliance specialists in various jurisdictions<br>• Local marketing agencies for region-specific campaigns<br>• Translation and localization services<br><br>These partnerships enable us to deliver comprehensive solutions regardless of your business location or industry.",
-                buttons: [
-                    { text: "Partnership Opportunities", action: "contact" },
-                    { text: "All Branches", action: "branches" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'expansion_plans': {
-                response: "Future Expansion Plans<br><br>Vgen Solutions is actively expanding to better serve our growing client base:<br><br>2024 Expansion Goals:<br>• Establish dedicated offices in 3 major metropolitan areas<br>• Launch specialized fintech solutions division<br>• Expand AI subsidiary with machine learning research lab<br>• Open 24/7 support centers in multiple timezones<br><br>2025 Vision:<br>• International presence in 10+ countries<br>• Industry-specific solution divisions<br>• Advanced AI and blockchain service offerings<br>• Strategic acquisitions of complementary service providers<br><br>Join us on our growth journey and benefit from our expanding capabilities!",
-                buttons: [
-                    { text: "Investment Opportunities", action: "contact" },
-                    { text: "Career Opportunities", action: "contact" },
-                    { text: "All Branches", action: "branches" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'branding': {
-                response: "Branding for Small Businesses<br><br>Your brand is more than a logo—it's the emotional connection you build with customers. Strong branding helps small businesses compete with larger companies.",
-                buttons: [
-                    { text: "Visual Identity", action: "visual_identity" },
-                    { text: "Brand Voice", action: "brand_voice" },
-                    { text: "Customer Experience", action: "customer_experience" },
-                    { text: "Digital Presence", action: "digital_presence" },
-                    { text: "Community Building", action: "community_building" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'visual_identity': {
-                response: "Visual Identity<br><br>Create a memorable logo, color palette, and design system that reflects your values and resonates with your target audience.<br><br>Consistent branding increases revenue by up to 23%. We help you create a cohesive visual identity that stands out.",
-                buttons: [
-                    { text: "🎨 All Branding Services", action: "branding" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'brand_voice': {
-                response: "Brand Voice<br><br>Develop a unique tone and messaging style that makes your business recognizable across all customer touchpoints.<br><br>64% of consumers cite shared values as the reason they trust a brand. We help you find and express your authentic voice.",
-                buttons: [
-                    { text: "🎨 All Branding Services", action: "branding" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'customer_experience': {
-                response: "Customer Experience<br><br>Every interaction shapes perception. Deliver consistent, exceptional experiences that turn customers into brand advocates.<br><br>86% of buyers will pay more for a great customer experience. We help you design memorable customer journeys.",
-                buttons: [
-                    { text: "🎨 All Branding Services", action: "branding" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'digital_presence': {
-                response: "Digital Presence<br><br>Your website, social media, and online reviews form your digital storefront. Make every pixel count.<br><br>75% of users judge credibility based on website design. We create digital experiences that build trust and drive conversions.",
-                buttons: [
-                    { text: "🎨 All Branding Services", action: "branding" },
-                    { text: "🚀 Get Started", action: "get_started" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'community_building': {
-                response: "Community Building<br><br>Engage with your audience authentically. Build a loyal community that supports and promotes your business.<br><br>Communities drive 5x higher engagement than traditional marketing. We help you build engaged, loyal customer communities that become your biggest advocates.",
-                buttons: [
-                    { text: "Brand Story", action: "brand_story" },
-                    { text: "All Branding Services", action: "branding" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'brand_story': {
-                response: "Brand Story<br><br>Share your journey, mission, and values. People connect with stories, not just products or services.<br><br>Stories are 22x more memorable than facts alone. Your brand story creates emotional connections that turn customers into loyal advocates.",
-                buttons: [
-                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
-                    { text: "All Branding Services", action: "branding" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'small_business_advantages': {
-                response: "Why Small Businesses Win with Strong Marketing<br><br>\"Your brand is what people say about you when you're not in the room.\" — Jeff Bezos, Amazon Founder<br><br>Here's why small businesses have unique advantages:",
-                buttons: [
-                    { text: "Level the Playing Field", action: "level_playing_field" },
-                    { text: "Build Trust Faster", action: "build_trust" },
-                    { text: "Own Your Niche", action: "own_niche" },
-                    { text: "Adapt Quickly", action: "adapt_quickly" },
-                    { text: "Create Loyal Fans", action: "loyal_fans" },
-                    { text: "Invest in Growth", action: "invest_growth" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'level_playing_field': {
-                response: "1. Level the Playing Field<br><br>Digital marketing gives small businesses the same tools as large corporations. With the right strategy, you can compete and win against bigger competitors.<br><br>We help you access enterprise-level marketing tools and strategies at small business prices.",
-                buttons: [
-                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'build_trust': {
-                response: "2. Build Trust Faster<br><br>Small businesses have an advantage: authenticity. Customers trust real stories and personal connections more than corporate messaging.<br><br>We help you showcase your authentic story and build genuine connections with your audience.",
-                buttons: [
-                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'own_niche': {
-                response: "3. Own Your Niche<br><br>You don't need to appeal to everyone. Focus on your ideal customer, dominate your niche, and become the go-to expert in your field.<br><br>We help you identify and dominate your specific market niche with targeted strategies.",
-                buttons: [
-                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'adapt_quickly': {
-                response: "4. Adapt Quickly<br><br>Small businesses can pivot faster than large companies. Use this agility to test new ideas, respond to trends, and stay ahead of the curve.<br><br>We help you leverage your agility advantage with rapid testing and optimization strategies.",
-                buttons: [
-                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'loyal_fans': {
-                response: "5. Create Loyal Fans<br><br>Every customer interaction is an opportunity to create a raving fan. Word-of-mouth from satisfied customers is your most powerful marketing tool.<br><br>We help you design customer experiences that turn buyers into brand ambassadors.",
-                buttons: [
-                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
-                    { text: "Client Reviews", action: "client_reviews" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'invest_growth': {
-                response: "6. Invest in Growth<br><br>Marketing isn't an expense—it's an investment in your future. Every dollar spent on strategic marketing returns multiple times in revenue and brand equity.<br><br>We help you maximize ROI with data-driven marketing investments that fuel sustainable growth.",
-                buttons: [
-                    { text: "Why Small Businesses Win", action: "small_business_advantages" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'client_reviews': {
-                response: "Client Reviews<br><br>\"Vgen Solutions transformed our online presence. Their team is professional, responsive, and delivers exceptional results.\" — Sarah Johnson, CEO, TechStart Inc.<br><br>\"Outstanding service! They helped us scale our digital marketing efforts and doubled our conversion rates.\" — Michael Chen, Marketing Director, GrowthCo<br><br>\"The AI content generation service saved us countless hours. Highly recommend their innovative solutions!\" — Emily Rodriguez, Content Manager, MediaHub",
-                buttons: [
-                    { text: "Contact Information", action: "contact_details" },
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'contact_details': {
-                response: "Let's Connect<br><br>Email: contact@vgensolutions.com<br>Phone: +1 (555) 123-4567<br>Address: Subec Pagudpud Ilocos Norte 2919 Philippines<br><br>Operating remotely to support businesses globally. Ready to transform your brand? Small and medium businesses are the backbone of the economy. We're here to help you grow, compete, and thrive in the digital age.",
-                buttons: [
-                    { text: "Get Started", action: "get_started" },
-                    { text: "Our Services", action: "services" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'get_started': {
-                response: "Ready to Get Started?<br><br>Let's discuss your project and create a tailored solution for your business. Contact us at {contact_info} or choose how you'd like to proceed:<br><br>• Fast Delivery - Projects completed in record time<br>• Results Driven - Measurable ROI on every project<br>• Secure - Enterprise-grade security standards<br>• Innovative - Cutting-edge technology solutions",
-                buttons: [
-                    { text: "📞 Contact Us Now", action: "contact" },
-                    { text: "⚙️ View Our Services", action: "services" },
-                    { text: "📋 Our Process", action: "strategy" },
-                    { text: "🏠 Back to Main Menu", action: "main" }
-                ]
-            },
-            'faqs': {
-                response: "Frequently Asked Questions<br><br>Browse through our most commonly asked questions to find answers about our services, pricing, and processes.",
-                buttons: [
-                    { text: "About Our Services", action: "faq_services" },
-                    { text: "Pricing & Budget", action: "faq_pricing" },
-                    { text: "Project Process", action: "faq_process" },
-                    { text: "Technical Questions", action: "faq_technical" },
-                    { text: "Support & More", action: "faq_support" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'faq_services': {
-                response: "<strong>About Our Services</strong><br><br><strong>Q: What services do you offer?</strong><br>We offer email setup & management, custom web development, digital advertising (Meta & Google Ads), growth strategy consulting, AI content generation, headless browser automation, HR solutions, and advanced HTML integration.<br><br><strong>Q: Do you work with small businesses and startups?</strong><br>Absolutely! Vgen Solutions specializes in supporting small and medium businesses. We understand budget constraints and work with you to create affordable solutions that don't compromise on quality.<br><br><strong>Q: What makes your email setup different from free email services?</strong><br>Professional email with your own domain (you@yourbusiness.com) builds trust and credibility. We set up secure, reliable email systems with advanced features, spam protection, and proper authentication.",
-                buttons: [
-                    { text: "Pricing Questions", action: "faq_pricing" },
-                    { text: "View All Services", action: "services" },
-                    { text: "All FAQs", action: "faqs" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'faq_pricing': {
-                response: "<strong>Pricing & Budget</strong><br><br><strong>Q: How is your pricing structured?</strong><br>We believe affordability is crucial for growing businesses. Our pricing is completely flexible and customized to your budget. We'll work with you to find solutions that fit your financial situation without sacrificing quality or results.<br><br><strong>Q: Can you work within my limited budget?</strong><br>Yes! We're here to help small businesses succeed, regardless of budget size. We'll find creative ways to deliver maximum value within your constraints. Our goal is to move mountains for you, not break your bank.<br><br><strong>Q: How much should I spend on advertising?</strong><br>Ad budgets vary widely based on your industry, goals, and competition. We work with businesses spending anywhere from small daily budgets to larger campaigns. We'll help you determine a realistic budget that can generate results and scale as you grow.",
-                buttons: [
-                    { text: "Process Questions", action: "faq_process" },
-                    { text: "Get Quote", action: "contact" },
-                    { text: "All FAQs", action: "faqs" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'faq_process': {
-                response: "<strong>Project Process</strong><br><br><strong>Q: How long does a typical project take?</strong><br>Timelines vary by project: Email setups take 1-3 days, websites 2-8 weeks, ad campaigns launch within 1 week, and automation projects range from 1-4 weeks. We'll provide a detailed timeline during our consultation.<br><br><strong>Q: Will I see immediate results from advertising?</strong><br>Digital ads can generate traffic quickly, but optimal results take time. We typically see initial data within 1-2 weeks and meaningful results within 30-60 days as we optimize campaigns.<br><br><strong>Q: What is a growth strategy and do I need one?</strong><br>A growth strategy is a roadmap for scaling your business. It identifies opportunities, prioritizes actions, and aligns your team toward clear goals. If you're feeling stuck, unsure where to focus, or ready to scale, a growth strategy provides clarity and direction.",
-                buttons: [
-                    { text: "Technical Questions", action: "faq_technical" },
-                    { text: "Our Process", action: "strategy" },
-                    { text: "All FAQs", action: "faqs" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'faq_technical': {
-                response: "<strong>Technical Questions</strong><br><br><strong>Q: Do I need technical knowledge to work with you?</strong><br>Not at all! We handle all the technical aspects and explain everything in simple terms. Our goal is to make technology accessible and easy for you. We'll guide you through every step and provide training so you feel confident.<br><br><strong>Q: How does AI content generation work?</strong><br>We use advanced AI tools trained on your brand voice, industry, and audience. The AI generates blog posts, social media content, product descriptions, and more. Our team reviews and refines everything to ensure quality, accuracy, and authenticity.<br><br><strong>Q: What tasks can headless automation handle?</strong><br>Headless automation can handle repetitive browser tasks: data entry, form submissions, web scraping, report generation, social media posting, inventory monitoring, lead generation, and more. If you're doing it manually in a browser repeatedly, we can probably automate it.",
-                buttons: [
-                    { text: "Support Questions", action: "faq_support" },
-                    { text: "AI Solutions", action: "ai_solutions" },
-                    { text: "All FAQs", action: "faqs" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            },
-            'faq_support': {
-                response: "<strong>Support & More</strong><br><br><strong>Q: Do you offer ongoing support after project completion?</strong><br>Yes! We provide comprehensive support and maintenance packages for all services. This includes technical support, performance monitoring, updates, optimization, and troubleshooting. We're here for the long haul—your success is our success.<br><br><strong>Q: Can you help if I'm just starting my business?</strong><br>Absolutely! We love working with new businesses. We'll help you establish a strong digital foundation from day one: professional email, website, branding, and marketing strategy. Starting right is easier and more affordable than fixing mistakes later.<br><br><strong>Q: How do I get started?</strong><br>Simply reach out via this chat, email, or our contact form. We'll schedule a free consultation to understand your needs, goals, and budget. Then we'll create a customized proposal that outlines exactly how we can help. No pressure, no obligations—just honest advice and solutions.",
-                buttons: [
-                    { text: "Get Started Now", action: "get_started" },
-                    { text: "Contact Us", action: "contact" },
-                    { text: "All FAQs", action: "faqs" },
-                    { text: "Back to Main Menu", action: "main" }
-                ]
-            }
         };
 
         // DOM elements
@@ -1154,16 +1025,11 @@
             const mainMenuMessage = `
                 <p class="message-text">Welcome to Vgen Solutions! We focus on small and medium businesses, providing dedicated support to help you grow together. How can I assist you today?</p>
                 <div class="quick-replies">
-                    <div class="quick-reply" onclick="handleButtonClick('services', 'What services do you offer?')">Our Services</div>
-                    <div class="quick-reply" onclick="handleButtonClick('advertising', 'Tell me about advertising platforms')">Advertising Platforms</div>
-                    <div class="quick-reply" onclick="handleButtonClick('ai_solutions', 'How can AI help my business?')">AI Solutions</div>
-                    <div class="quick-reply" onclick="handleButtonClick('strategy', 'What is your process?')">Our Strategy</div>
-                    <div class="quick-reply" onclick="handleButtonClick('branding', 'Help with branding')">Branding</div>
-                    <div class="quick-reply" onclick="handleButtonClick('faqs', 'Frequently Asked Questions')">FAQs</div>
-                    <div class="quick-reply" onclick="handleButtonClick('branches', 'Tell me about your branches')">Branches & Subsidiaries</div>
+                    <div class="quick-reply" onclick="handleButtonClick('business_info', 'Tell me about Vgen Solutions')">Business Info</div>
+                    <div class="quick-reply" onclick="handleButtonClick('services_menu', 'What services do you offer?')">Services</div>
+                    <div class="quick-reply" onclick="handleButtonClick('products_menu', 'What products do you have?')">Products</div>
+                    <div class="quick-reply" onclick="handleButtonClick('faqs_menu', 'I have questions')">FAQs</div>
                     <div class="quick-reply" onclick="handleButtonClick('contact', 'How can I contact you?')">Contact Us</div>
-                    <div class="quick-reply" onclick="handleButtonClick('business', 'Business hours and info')">Business Info</div>
-                    <div class="quick-reply" onclick="handleButtonClick('get_started', 'I want to get started')">Get Started</div>
                 </div>
             `;
             
