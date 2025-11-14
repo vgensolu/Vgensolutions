@@ -2480,9 +2480,11 @@
      <div style="margin-bottom: 1.5rem;"><label for="applicant-message" style="display: block; color: #f5e6d3; font-weight: 600; margin-bottom: 0.5rem;">Why do you want to join us? *</label> <textarea id="applicant-message" required rows="4" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(218, 165, 32, 0.3); border-radius: 10px; background: rgba(10, 10, 10, 0.8); color: #f5e6d3; font-family: inherit; resize: vertical;"></textarea>
      </div>
      <div style="background: rgba(218, 165, 32, 0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; border-left: 3px solid #EDA800;">
-      <p style="font-size: 0.85rem; color: #f5e6d3; line-height: 1.5; margin: 0;"><strong>🔒 Privacy &amp; Data Protection:</strong> Your information is stored securely and used solely for recruitment purposes. In compliance with GDPR, you have the right to access, modify, or request deletion of your data at any time. We will never disclose your information to third parties without your explicit consent.</p>
+      <p style="font-size: 0.85rem; color: #f5e6d3; line-height: 1.5; margin: 0;"><strong>🔒 Privacy &amp; Data Protection:</strong> Your information is stored securely and used solely for recruitment purposes. This data collection complies with the Republic of the Philippines Data Privacy Act of 2012 (RA 10173) and applies to all international data collection. In compliance with GDPR and applicable data protection laws, you have the right to access, modify, or request deletion of your data at any time. We will never disclose your information to third parties without your explicit consent. For more details, please review our <a href="#" id="terms-link-application" style="color: #EDA800; text-decoration: underline; cursor: pointer;">Terms and Conditions</a>.</p>
      </div>
      <div style="margin-bottom: 1.5rem;"><label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; font-size: 0.9rem;"> <input type="checkbox" id="application-privacy-consent" required style="margin-top: 0.25rem; width: auto; cursor: pointer;"> <span style="color: #f5e6d3;">I agree to the collection and processing of my personal data as described above *</span> </label>
+     </div>
+     <div style="margin-bottom: 1.5rem;"><label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; font-size: 0.9rem;"> <input type="checkbox" id="application-marketing-consent" style="margin-top: 0.25rem; width: auto; cursor: pointer;"> <span style="color: #f5e6d3;">I would like to receive marketing emails about Vgen Solutions' services, updates, and opportunities</span> </label>
      </div><button type="submit" class="cta-button" style="width: 100%;">Submit Application</button>
     </form>
     <div id="application-success" style="display: none; text-align: center; padding: 2rem;">
@@ -3023,9 +3025,11 @@
      <div class="whatsapp-tab-content active" id="wa-tab-contact">
       <form id="contact-form"><label for="contact-name">Name *</label> <input type="text" id="contact-name" required> <label for="contact-email">Email *</label> <input type="email" id="contact-email" required> <label for="contact-phone">Phone *</label> <input type="tel" id="contact-phone" required> <label for="contact-service">Service Interested In *</label> <select id="contact-service" required> <option value="">Select a service</option> <option value="Email Setup">Email Setup &amp; Management</option> <option value="Web Development">Web Development</option> <option value="Digital Advertising">Digital Advertising</option> <option value="Growth Strategy">Growth Strategy</option> <option value="AI Content">AI Content Generation</option> <option value="Automation">Headless Automations</option> <option value="HR Solutions">HR Solutions</option> <option value="Advanced HTML Integration">Advanced HTML Integration</option> </select> <label for="contact-date">Preferred Date (Optional)</label> <input type="date" id="contact-date"> <label for="contact-time">Preferred Time (Optional)</label> <select id="contact-time"> <option value="">Select a time</option> <option value="9:00 AM">9:00 AM</option> <option value="10:00 AM">10:00 AM</option> <option value="11:00 AM">11:00 AM</option> <option value="1:00 PM">1:00 PM</option> <option value="2:00 PM">2:00 PM</option> <option value="3:00 PM">3:00 PM</option> <option value="4:00 PM">4:00 PM</option> </select> <label for="contact-message">Message *</label> <textarea id="contact-message" rows="4" required></textarea>
        <div style="background: rgba(218, 165, 32, 0.15); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; border-left: 3px solid #EDA800;">
-        <p style="font-size: 0.85rem; color: #ffffff; line-height: 1.5; margin: 0;"><strong>🔒 Privacy &amp; Data Protection:</strong> Your information is stored securely and used solely for providing our services. In compliance with GDPR, you have the right to access, modify, or request deletion of your data at any time. We will never disclose your information to third parties without your explicit consent.</p>
+        <p style="font-size: 0.85rem; color: #ffffff; line-height: 1.5; margin: 0;"><strong>🔒 Privacy &amp; Data Protection:</strong> Your information is stored securely and used solely for providing our services. This data collection complies with the Republic of the Philippines Data Privacy Act of 2012 (RA 10173) and applies to all international data collection. In compliance with GDPR and applicable data protection laws, you have the right to access, modify, or request deletion of your data at any time. We will never disclose your information to third parties without your explicit consent. For more details, please review our <a href="#" id="terms-link-contact" style="color: #EDA800; text-decoration: underline; cursor: pointer;">Terms and Conditions</a>.</p>
        </div>
        <div style="margin-bottom: 1rem;"><label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; font-size: 0.9rem;"> <input type="checkbox" id="privacy-consent" required style="margin-top: 0.25rem; width: auto; cursor: pointer;"> <span style="color: #ffffff;">I agree to the collection and processing of my personal data as described above *</span> </label>
+       </div>
+       <div style="margin-bottom: 1rem;"><label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; font-size: 0.9rem;"> <input type="checkbox" id="contact-marketing-consent" style="margin-top: 0.25rem; width: auto; cursor: pointer;"> <span style="color: #ffffff;">I would like to receive marketing emails about Vgen Solutions' services, updates, and opportunities</span> </label>
        </div><button type="submit">Submit Contact Form</button>
       </form>
      </div>
@@ -3417,6 +3421,24 @@
       e.preventDefault();
       openTermsModal();
     });
+
+    // Terms and Conditions links in forms
+    const termsLinkApplication = document.getElementById('terms-link-application');
+    const termsLinkContact = document.getElementById('terms-link-contact');
+    
+    if (termsLinkApplication) {
+      termsLinkApplication.addEventListener('click', (e) => {
+        e.preventDefault();
+        openTermsModal();
+      });
+    }
+    
+    if (termsLinkContact) {
+      termsLinkContact.addEventListener('click', (e) => {
+        e.preventDefault();
+        openTermsModal();
+      });
+    }
 
     termsClose.addEventListener('click', closeTermsModal);
     termsModal.addEventListener('click', (e) => {
