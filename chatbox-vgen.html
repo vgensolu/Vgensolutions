@@ -371,6 +371,10 @@
  <body>
   <div class="chat-container">
    <header class="chat-header">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+     <img src="/media/logos/logo-colored.png" alt="Vgen Logo" style="height: 32px; width: 32px; object-fit: contain;">
+     <svg viewBox="0 0 24 24" fill="currentColor" style="width: 28px; height: 28px;"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2c0-4.97-4.03-9-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z"/></svg>
+    </div>
     <h1 class="company-name" id="companyName">Vgen Solutions Service Center</h1>
     <p class="welcome-text" id="welcomeMessage">Seamless Support, Smart Solutions</p>
     <div class="status-indicator">
@@ -400,6 +404,9 @@
        <div class="quick-reply" onclick="handleButtonClick('branding', 'Help with branding')">
         Branding
        </div>
+       <div class="quick-reply" onclick="handleButtonClick('faqs', 'Frequently Asked Questions')">
+        FAQs
+       </div>
        <div class="quick-reply" onclick="handleButtonClick('contact', 'How can I contact you?')">
         Contact Us
        </div>
@@ -420,7 +427,7 @@
             company_name: "Vgen Solutions Service Center",
             welcome_message: "Seamless Support, Smart Solutions",
             business_hours: "Available 24/7",
-            contact_info: "conatact@vgensolutions.com",
+            contact_info: "contact@vgensolutions.com",
             background_color: "#0a0a0a",
             surface_color: "#1a1a1a",
             text_color: "#f5e6d3",
@@ -904,6 +911,62 @@
                     { text: "📋 Our Process", action: "strategy" },
                     { text: "🏠 Back to Main Menu", action: "main" }
                 ]
+            },
+            'faqs': {
+                response: "Frequently Asked Questions<br><br>Browse through our most commonly asked questions to find answers about our services, pricing, and processes.",
+                buttons: [
+                    { text: "About Our Services", action: "faq_services" },
+                    { text: "Pricing & Budget", action: "faq_pricing" },
+                    { text: "Project Process", action: "faq_process" },
+                    { text: "Technical Questions", action: "faq_technical" },
+                    { text: "Support & More", action: "faq_support" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_services': {
+                response: "<strong>About Our Services</strong><br><br><strong>Q: What services do you offer?</strong><br>We offer email setup & management, custom web development, digital advertising (Meta & Google Ads), growth strategy consulting, AI content generation, headless browser automation, HR solutions, and advanced HTML integration.<br><br><strong>Q: Do you work with small businesses and startups?</strong><br>Absolutely! Vgen Solutions specializes in supporting small and medium businesses. We understand budget constraints and work with you to create affordable solutions that don't compromise on quality.<br><br><strong>Q: What makes your email setup different from free email services?</strong><br>Professional email with your own domain (you@yourbusiness.com) builds trust and credibility. We set up secure, reliable email systems with advanced features, spam protection, and proper authentication.",
+                buttons: [
+                    { text: "Pricing Questions", action: "faq_pricing" },
+                    { text: "View All Services", action: "services" },
+                    { text: "All FAQs", action: "faqs" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_pricing': {
+                response: "<strong>Pricing & Budget</strong><br><br><strong>Q: How is your pricing structured?</strong><br>We believe affordability is crucial for growing businesses. Our pricing is completely flexible and customized to your budget. We'll work with you to find solutions that fit your financial situation without sacrificing quality or results.<br><br><strong>Q: Can you work within my limited budget?</strong><br>Yes! We're here to help small businesses succeed, regardless of budget size. We'll find creative ways to deliver maximum value within your constraints. Our goal is to move mountains for you, not break your bank.<br><br><strong>Q: How much should I spend on advertising?</strong><br>Ad budgets vary widely based on your industry, goals, and competition. We work with businesses spending anywhere from small daily budgets to larger campaigns. We'll help you determine a realistic budget that can generate results and scale as you grow.",
+                buttons: [
+                    { text: "Process Questions", action: "faq_process" },
+                    { text: "Get Quote", action: "contact" },
+                    { text: "All FAQs", action: "faqs" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_process': {
+                response: "<strong>Project Process</strong><br><br><strong>Q: How long does a typical project take?</strong><br>Timelines vary by project: Email setups take 1-3 days, websites 2-8 weeks, ad campaigns launch within 1 week, and automation projects range from 1-4 weeks. We'll provide a detailed timeline during our consultation.<br><br><strong>Q: Will I see immediate results from advertising?</strong><br>Digital ads can generate traffic quickly, but optimal results take time. We typically see initial data within 1-2 weeks and meaningful results within 30-60 days as we optimize campaigns.<br><br><strong>Q: What is a growth strategy and do I need one?</strong><br>A growth strategy is a roadmap for scaling your business. It identifies opportunities, prioritizes actions, and aligns your team toward clear goals. If you're feeling stuck, unsure where to focus, or ready to scale, a growth strategy provides clarity and direction.",
+                buttons: [
+                    { text: "Technical Questions", action: "faq_technical" },
+                    { text: "Our Process", action: "strategy" },
+                    { text: "All FAQs", action: "faqs" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_technical': {
+                response: "<strong>Technical Questions</strong><br><br><strong>Q: Do I need technical knowledge to work with you?</strong><br>Not at all! We handle all the technical aspects and explain everything in simple terms. Our goal is to make technology accessible and easy for you. We'll guide you through every step and provide training so you feel confident.<br><br><strong>Q: How does AI content generation work?</strong><br>We use advanced AI tools trained on your brand voice, industry, and audience. The AI generates blog posts, social media content, product descriptions, and more. Our team reviews and refines everything to ensure quality, accuracy, and authenticity.<br><br><strong>Q: What tasks can headless automation handle?</strong><br>Headless automation can handle repetitive browser tasks: data entry, form submissions, web scraping, report generation, social media posting, inventory monitoring, lead generation, and more. If you're doing it manually in a browser repeatedly, we can probably automate it.",
+                buttons: [
+                    { text: "Support Questions", action: "faq_support" },
+                    { text: "AI Solutions", action: "ai_solutions" },
+                    { text: "All FAQs", action: "faqs" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
+            },
+            'faq_support': {
+                response: "<strong>Support & More</strong><br><br><strong>Q: Do you offer ongoing support after project completion?</strong><br>Yes! We provide comprehensive support and maintenance packages for all services. This includes technical support, performance monitoring, updates, optimization, and troubleshooting. We're here for the long haul—your success is our success.<br><br><strong>Q: Can you help if I'm just starting my business?</strong><br>Absolutely! We love working with new businesses. We'll help you establish a strong digital foundation from day one: professional email, website, branding, and marketing strategy. Starting right is easier and more affordable than fixing mistakes later.<br><br><strong>Q: How do I get started?</strong><br>Simply reach out via this chat, email, or our contact form. We'll schedule a free consultation to understand your needs, goals, and budget. Then we'll create a customized proposal that outlines exactly how we can help. No pressure, no obligations—just honest advice and solutions.",
+                buttons: [
+                    { text: "Get Started Now", action: "get_started" },
+                    { text: "Contact Us", action: "contact" },
+                    { text: "All FAQs", action: "faqs" },
+                    { text: "Back to Main Menu", action: "main" }
+                ]
             }
         };
 
@@ -1096,6 +1159,7 @@
                     <div class="quick-reply" onclick="handleButtonClick('ai_solutions', 'How can AI help my business?')">AI Solutions</div>
                     <div class="quick-reply" onclick="handleButtonClick('strategy', 'What is your process?')">Our Strategy</div>
                     <div class="quick-reply" onclick="handleButtonClick('branding', 'Help with branding')">Branding</div>
+                    <div class="quick-reply" onclick="handleButtonClick('faqs', 'Frequently Asked Questions')">FAQs</div>
                     <div class="quick-reply" onclick="handleButtonClick('branches', 'Tell me about your branches')">Branches & Subsidiaries</div>
                     <div class="quick-reply" onclick="handleButtonClick('contact', 'How can I contact you?')">Contact Us</div>
                     <div class="quick-reply" onclick="handleButtonClick('business', 'Business hours and info')">Business Info</div>
