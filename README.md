@@ -9,10 +9,13 @@
 
 ### Theme Colors
 
+For complete theme and design system documentation, see **[docs/THEMES.md](docs/THEMES.md)**.
+
 The Vgen Solutions brand uses a sophisticated golden color palette that conveys luxury, professionalism, and trust:
 
-- **Primary Color**: `#daa520` (Goldenrod) - Main theme color used throughout
-- **Secondary Color**: `#b8860b` (Dark Goldenrod) - Used for gradients and accents
+- **Primary Color**: `#EDA800` (Gold) - Main theme color used throughout
+- **Secondary Color**: `#daa520` (Goldenrod) - Secondary accents and borders
+- **Dark Accent**: `#b8860b` (Dark Goldenrod) - Used for gradients and accents
 - **Highlight Color**: `#ffd700` (Gold) - Used for emphasis and hover states
 - **Background Color**: `#0a0a0a` (Near Black) - Main background
 - **Surface Color**: `#1a1a1a` (Dark Gray) - Card and component backgrounds
@@ -22,7 +25,7 @@ These colors are defined as CSS variables in `index.html`:
 
 ```css
 :root {
-  --vgensolutions-primary: #daa520;
+  --vgensolutions-primary: #EDA800;
 }
 ```
 
@@ -55,13 +58,26 @@ Vgen Solutions offers a comprehensive suite of digital services:
 ```
 .
 ├── index.html              # Main website file (single-page application)
-├── istockphoto-*.jpg       # Background image
+├── sw.js                   # Service worker for cache management
 ├── README.md               # This file
 ├── LICENSE                 # Copyright and usage restrictions
 ├── CNAME                   # Custom domain configuration
-├── WEBSITE_STATUS_REPORT.md # Website status documentation
-└── docs/                   # GitHub Pages configuration
-    └── CNAME
+├── docs/                   # Documentation directory
+│   ├── README.md          # Documentation index
+│   ├── THEMES.md          # Theme and design system guide
+│   ├── CONTRIBUTING.md    # Contribution guidelines
+│   ├── guides/            # User and developer guides
+│   │   ├── WEBSITE_STATUS_REPORT.md
+│   │   └── EMAIL_TEMPLATES.md
+│   └── services/          # Service-specific documentation
+│       └── hr-solutions.md
+├── media/                  # Media assets
+│   ├── images/            # Service images and graphics
+│   ├── videos/            # Background videos
+│   ├── logos/             # Logo files
+│   └── favicons/          # Favicon files
+├── email-templates/        # Professional email HTML templates
+└── scripts/                # Build and utility scripts
 ```
 
 ## 🎯 Key Features
@@ -74,6 +90,31 @@ Vgen Solutions offers a comprehensive suite of digital services:
 - **Career Portal**: Dedicated careers section with job listings
 - **SEO Optimized**: Proper meta tags and semantic HTML
 - **Fast Loading**: Optimized assets and minimal dependencies
+- **Progressive Web App**: Service worker for offline support and caching
+- **Cache Management**: Built-in cache clearing functionality
+
+## 🔧 Cache & Performance Optimization
+
+The website includes advanced cache management features:
+
+### Service Worker
+- Automatic caching of static assets
+- Offline support for better reliability
+- Background sync capabilities
+- Push notification support
+
+### Clear Cache
+To clear the site cache and cookies, open the browser console and run:
+```javascript
+clearSiteCache()
+```
+
+This will:
+- Clear service worker cache
+- Clear browser cache storage
+- Clear local storage
+- Clear session storage
+- Reload the page with fresh content
 
 ## 📞 Contact Information
 
@@ -91,9 +132,17 @@ Vgen Solutions offers a comprehensive suite of digital services:
 
 ## 📝 Development Notes
 
+### Documentation
+
+Complete documentation is available in the [docs/](docs/) directory:
+- **[THEMES.md](docs/THEMES.md)** - Theme and design system guide
+- **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** - How to contribute
+- **[Website Status Report](docs/guides/WEBSITE_STATUS_REPORT.md)** - Technical validation
+- **[Email Templates](docs/guides/EMAIL_TEMPLATES.md)** - Email template guide
+
 ### Color Usage Guidelines
 
-The primary color (`#daa520`) should be used for:
+The primary color (`#EDA800`) should be used for:
 - Borders on interactive elements
 - Icon colors
 - Accent highlights

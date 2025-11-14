@@ -1,2 +1,44 @@
 index.html.backup
 screenshots/
+
+# Cache and temporary files
+*.cache
+*.tmp
+*.temp
+.cache/
+cache/
+tmp/
+temp/
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Service Worker cache
+sw-cache/
+workbox-cache/

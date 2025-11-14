@@ -3,10 +3,22 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Cache Control and Optimization -->
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
+  <meta http-equiv="Expires" content="31536000">
+  <meta http-equiv="Pragma" content="public">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Clear browsing data and prevent caching issues -->
+  <meta name="theme-color" content="#EDA800">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
   <title>Vgen Solutions - Innovative Digital Solutions</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
-  <link rel="icon" type="image/png" href="/favicon.png?v=2">
-  <link rel="shortcut icon" href="/favicon.ico?v=2">
+  <link rel="icon" type="image/x-icon" href="/media/favicons/favicon.ico?v=3">
+  <link rel="icon" type="image/png" href="/media/favicons/favicon.png?v=3">
+  <link rel="shortcut icon" href="/media/favicons/favicon.ico?v=3">
   <!-- Optional Canva SDK integration - these may not exist on GitHub Pages -->
   <script src="/_sdk/element_sdk.js" async onerror="console.log('Element SDK not available')"></script>
   <script src="/_sdk/data_sdk.js" async onerror="console.log('Data SDK not available')"></script>
@@ -2245,13 +2257,13 @@
  <body>
   <!-- Video Background Wallpaper -->
   <video id="video-background" autoplay loop muted playsinline>
-   <source src="Violetvidwall.mp4" type="video/mp4">
+   <source src="/media/videos/Violetvidwall.mp4" type="video/mp4">
   </video><!-- Header -->
   <header id="header">
    <div class="header-content">
     <div>
      <div class="logo" id="company-name">
-      <img src="logo-colored.png" alt="Vgen Solutions Logo">
+      <img src="/media/logos/logo-colored.png" alt="Vgen Solutions Logo">
       Vgen Solutions
      </div>
      <div class="tagline" id="tagline">
@@ -2819,7 +2831,7 @@
    </div>
    <div class="footer-bottom">
     <div class="footer-logo">
-     <img src="logo-colored.png" alt="Vgen Solutions Logo">
+     <img src="/media/logos/logo-colored.png" alt="Vgen Solutions Logo">
      <span class="footer-logo-text">Vgen Solutions</span>
     </div>
     <p id="footer-text">© 2024 Vgen Solutions. All rights reserved.</p>
@@ -2861,11 +2873,11 @@
   </div><!-- Vgen Chat Bot Widget -->
   <div class="vgen-chat-widget">
    <button class="vgen-chat-button" id="vgen-chat-button">
-    <img src="logo-colored.png" alt="Vgen Logo">
+    <img src="/media/logos/logo-colored.png" alt="Vgen Logo">
    </button>
    <div class="vgen-chat-window" id="vgen-chat-window">
     <div class="vgen-chat-header">
-     <img src="logo-colored.png" alt="Vgen Logo"> Vgen Assistant
+     <img src="/media/logos/logo-colored.png" alt="Vgen Logo"> Vgen Assistant
      <button id="vgen-chat-close" style="margin-left: auto; background: none; border: none; color: #000000; font-size: 1.5rem; cursor: pointer; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='none'">×</button>
     </div>
     <div class="vgen-chat-tabs">
@@ -3953,5 +3965,92 @@
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99bf41b8b67311c9',t:'MTc2MjcxMTcyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  
+  <!-- Service Worker Registration for Cache Management and Offline Support -->
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('[App] Service Worker registered:', registration.scope);
+            
+            // Check for updates periodically
+            setInterval(() => {
+              registration.update();
+            }, 60000); // Check every minute
+          })
+          .catch((error) => {
+            console.log('[App] Service Worker registration failed:', error);
+          });
+      });
+      
+      // Listen for service worker updates
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('[App] Service Worker updated, reloading page...');
+        window.location.reload();
+      });
+    }
+    
+    // Cache clearing utility function
+    window.clearSiteCache = async function() {
+      console.log('[App] Clearing site cache...');
+      
+      try {
+        // Clear service worker cache
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          const messageChannel = new MessageChannel();
+          
+          const promise = new Promise((resolve, reject) => {
+            messageChannel.port1.onmessage = (event) => {
+              if (event.data.success) {
+                resolve(event.data);
+              } else {
+                reject(new Error(event.data.error));
+              }
+            };
+            
+            setTimeout(() => reject(new Error('Timeout')), 5000);
+          });
+          
+          navigator.serviceWorker.controller.postMessage(
+            { type: 'CLEAR_CACHE' },
+            [messageChannel.port2]
+          );
+          
+          await promise;
+        }
+        
+        // Clear browser cache storage
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map(name => caches.delete(name)));
+        }
+        
+        // Clear local storage
+        if (window.localStorage) {
+          localStorage.clear();
+        }
+        
+        // Clear session storage
+        if (window.sessionStorage) {
+          sessionStorage.clear();
+        }
+        
+        console.log('[App] Cache cleared successfully');
+        alert('Cache and cookies cleared! The page will reload.');
+        window.location.reload(true);
+        
+      } catch (error) {
+        console.error('[App] Failed to clear cache:', error);
+        alert('Failed to clear cache: ' + error.message);
+      }
+    };
+    
+    // Add cache clear button to console for debugging
+    console.log('%c🧹 Cache Management', 'color: #EDA800; font-size: 16px; font-weight: bold;');
+    console.log('To clear all cache and cookies, run: clearSiteCache()');
+  </script>
+  
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99bf41b8b67311c9',t:'MTc2MjcxMTcyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
