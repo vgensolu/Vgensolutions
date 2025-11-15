@@ -65,22 +65,27 @@ docs/
 ```
 media/
 ├── images/              # Service images (8 WebP files)
-│   ├── Ai Generation.webp
-│   ├── Digital Advertising.webp
-│   ├── Email Set Up and Management.webp
-│   ├── Growth Strategy.webp
+│   ├── Ai-Generation.webp
+│   ├── Digital-Advertising.webp
+│   ├── Email-Set-Up-and-Management.webp
+│   ├── Growth-Strategy.webp
 │   ├── HR.webp
 │   ├── HTML.webp
-│   ├── Headless Automation.webp
-│   └── Web Development.webp
+│   ├── Headless-Automation.webp
+│   └── Web-Development.webp
 ├── videos/              # Background videos
 │   └── Violetvidwall.mp4 (1.67 MB)
 ├── logos/               # Logo files
 │   ├── logo.png (1.3 MB)
 │   └── logo-colored.png (24 KB)
-└── favicons/            # Favicon files
+└── favicon_io/          # Favicon files
     ├── favicon.ico (32 KB)
-    └── favicon.png (1.3 MB)
+    ├── favicon-16x16.png
+    ├── favicon-32x32.png
+    ├── apple-touch-icon.png
+    ├── android-chrome-192x192.png
+    ├── android-chrome-512x512.png
+    └── site.webmanifest
 ```
 
 #### Files Moved/Reorganized
