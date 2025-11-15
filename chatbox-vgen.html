@@ -44,7 +44,7 @@
         .company-name {
             font-size: 20px;
             font-weight: 700;
-            margin: 0 0 8px 0;
+            margin: 0;
         }
 
         .welcome-text {
@@ -371,14 +371,10 @@
  <body>
   <div class="chat-container">
    <header class="chat-header">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
      <img src="/media/logos/logo-colored.png" alt="Vgen Logo" style="height: 32px; width: 32px; object-fit: contain;">
      <svg viewBox="0 0 24 24" fill="currentColor" style="width: 28px; height: 28px;"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2c0-4.97-4.03-9-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z"/></svg>
-    </div>
-    <h1 class="company-name" id="companyName">Vgen Solutions Service Center</h1>
-    <p class="welcome-text" id="welcomeMessage">Seamless Support, Smart Solutions</p>
-    <div class="status-indicator">
-     <div class="status-dot"></div><span id="businessHours">Available 24/7</span>
+     <h1 class="company-name" id="companyName">Vgen Solutions Assistant</h1>
     </div>
    </header>
    <main class="messages-container" id="messagesContainer">
@@ -412,9 +408,9 @@
   <script>
         // Configuration
         const defaultConfig = {
-            company_name: "Vgen Solutions Service Center",
-            welcome_message: "Seamless Support, Smart Solutions",
-            business_hours: "Available 24/7",
+            company_name: "Vgen Solutions Assistant",
+            welcome_message: "",
+            business_hours: "",
             contact_info: "contact@vgensolutions.com",
             background_color: "#0a0a0a",
             surface_color: "#1a1a1a",
@@ -432,7 +428,7 @@
         // Comprehensive Vgen Solutions knowledge base
         const knowledgeBase = {
             'business_info': {
-                response: "About Vgen Solutions<br><br>Vgen Solutions is a digital marketing and technology solutions provider specializing in helping small and medium businesses succeed online. We offer professional services at affordable prices, with flexible solutions tailored to your budget.<br><br><strong>Location:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines (Operating remotely to support clients globally)<br><br><strong>Contact Information:</strong><br>• Email: contact@vgensolutions.com<br>• Phone: +1 (555) 123-4567<br><br><strong>Business Hours:</strong> We operate remotely and are available for consultations by appointment. Contact us to schedule a meeting at your convenience.",
+                response: "About Vgen Solutions<br><br>Vgen Solutions is a digital marketing and technology solutions provider specializing in helping small and medium businesses succeed online. We offer professional services at affordable prices, with flexible solutions tailored to your budget.<br><br><strong>Location:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines (Operating remotely to support clients globally)<br><br><strong>Contact Information:</strong><br>• Email: contact@vgensolutions.com<br>• Phone: +60 11-2301 4446<br><br><strong>Business Hours:</strong> We operate remotely and are available for consultations by appointment. Contact us to schedule a meeting at your convenience.",
                 buttons: [
                     { text: "Services", action: "services_menu" },
                     { text: "Products", action: "products_menu" },
@@ -832,7 +828,7 @@
                 ]
             },
             'contact': {
-                response: "Contact Information<br><br><strong>Email:</strong> contact@vgensolutions.com<br><strong>Phone:</strong> +1 (555) 123-4567<br><strong>Address:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines<br><br>We typically respond within 24 hours during business days. For urgent matters, please mention 'URGENT' in your subject line.<br><br>Operating remotely to support clients globally. Contact us to schedule a meeting at your convenience.",
+                response: "Contact Information<br><br><strong>Email:</strong> contact@vgensolutions.com<br><strong>Phone:</strong> +60 11-2301 4446<br><strong>Address:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines<br><br>We typically respond within 24 hours during business days. For urgent matters, please mention 'URGENT' in your subject line.<br><br>Operating remotely to support clients globally. Contact us to schedule a meeting at your convenience.",
                 buttons: [
                     { text: "Business Info", action: "business_info" },
                     { text: "Services", action: "services_menu" },
@@ -844,8 +840,6 @@
         // DOM elements
         const messagesContainer = document.getElementById('messagesContainer');
         const companyName = document.getElementById('companyName');
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        const businessHours = document.getElementById('businessHours');
 
         // Data SDK handler
         const dataHandler = {
@@ -857,17 +851,15 @@
         // Element SDK implementation
         async function onConfigChange(config) {
             const company = config.company_name || defaultConfig.company_name;
-            const welcome = config.welcome_message || defaultConfig.welcome_message;
-            const hours = config.business_hours || defaultConfig.business_hours;
             const bgColor = config.background_color || defaultConfig.background_color;
             const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
             const fontFamily = config.font_family || defaultConfig.font_family;
             const fontSize = config.font_size || defaultConfig.font_size;
 
             // Update text content
-            companyName.textContent = company;
-            welcomeMessage.textContent = welcome;
-            businessHours.textContent = hours;
+            if (companyName) {
+                companyName.textContent = company;
+            }
 
             // Update colors
             document.body.style.background = `linear-gradient(135deg, ${bgColor} 0%, #b8860b 100%)`;
@@ -878,9 +870,9 @@
             document.body.style.fontFamily = `${fontFamily}, -apple-system, BlinkMacSystemFont, sans-serif`;
             
             // Update font sizes proportionally
-            companyName.style.fontSize = `${fontSize * 1.4}px`;
-            welcomeMessage.style.fontSize = `${fontSize}px`;
-            businessHours.style.fontSize = `${fontSize * 0.85}px`;
+            if (companyName) {
+                companyName.style.fontSize = `${fontSize * 1.4}px`;
+            }
         }
 
         function mapToCapabilities(config) {
