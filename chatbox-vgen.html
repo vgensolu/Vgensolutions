@@ -230,8 +230,8 @@
         .bot-avatar {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, #EDA800 0%, #daa520 100%);
-            border-radius: 50%;
+            background: transparent;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -239,6 +239,13 @@
             font-size: 16px;
             margin-right: 8px;
             flex-shrink: 0;
+        }
+
+        .bot-avatar img,
+        .header-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .error-message {
@@ -303,8 +310,12 @@
             .bot-avatar {
                 width: 28px;
                 height: 28px;
-                font-size: 14px;
                 margin-right: 6px;
+            }
+
+            .header-logo {
+                width: 28px;
+                height: 28px;
             }
             
             .typing-indicator {
@@ -356,8 +367,12 @@
             .bot-avatar {
                 width: 24px;
                 height: 24px;
-                font-size: 12px;
                 margin-right: 4px;
+            }
+
+            .header-logo {
+                width: 24px;
+                height: 24px;
             }
             
             .message-time {
@@ -372,13 +387,14 @@
   <div class="chat-container">
    <header class="chat-header">
     <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+     <img src="media/logos/logo.png" alt="Vgen Logo" class="header-logo" style="width: 32px; height: 32px;">
      <h1 class="company-name" id="companyName">Vgen Solutions Assistant</h1>
     </div>
    </header>
    <main class="messages-container" id="messagesContainer">
     <div class="message bot">
      <div class="bot-avatar">
-      🤖
+      <img src="media/logos/logo.png" alt="Vgen Logo">
      </div>
      <div class="message-bubble">
       <p class="message-text">Welcome to Vgen Solutions! We focus on small and medium businesses, providing dedicated support to help you grow together. How can I assist you today?</p>
@@ -1062,7 +1078,7 @@
             messageEl.className = 'message bot';
             
             messageEl.innerHTML = `
-                <div class="bot-avatar">🤖</div>
+                <div class="bot-avatar"><img src="media/logos/logo.png" alt="Vgen Logo"></div>
                 <div class="message-bubble">
                     ${htmlContent}
                     <div class="message-time">${formatTime(new Date())}</div>
@@ -1083,7 +1099,7 @@
                     <p class="message-text">${text}</p>
                     <div class="message-time">${formatTime(new Date())}</div>
                 </div>` :
-                `<div class="bot-avatar">🤖</div>
+                `<div class="bot-avatar"><img src="media/logos/logo.png" alt="Vgen Logo"></div>
                 <div class="message-bubble">
                     <p class="message-text">${text}</p>
                     <div class="message-time">${formatTime(new Date())}</div>
@@ -1104,7 +1120,7 @@
             typingEl.id = 'typing-indicator';
             
             typingEl.innerHTML = `
-                <div class="bot-avatar">🤖</div>
+                <div class="bot-avatar"><img src="media/logos/logo.png" alt="Vgen Logo"></div>
                 <div class="typing-indicator">
                     <div class="typing-dots">
                         <div class="typing-dot"></div>
