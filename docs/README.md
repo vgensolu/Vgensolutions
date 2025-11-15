@@ -45,12 +45,14 @@ Includes:
 
 ### User Guides
 
+- **[GitHub Pages 404 Fix](guides/GITHUB_PAGES_404_FIX.md)** - **⚠️ Quick fix for GitHub Pages 404 error**
 - **[Website Status Report](guides/WEBSITE_STATUS_REPORT.md)** - Comprehensive website validation and deployment status
 - **[Email Templates Guide](guides/EMAIL_TEMPLATES.md)** - How to use and customize email templates
 - **[Cache & Performance Optimization](guides/CACHE_OPTIMIZATION.md)** - Cache management and performance guide
 
 ### Developer Guides
 
+- **[GitHub Pages Setup Guide](../GITHUB_PAGES_SETUP_GUIDE.md)** - **📖 Complete GitHub Pages configuration guide**
 - **[Quick Reference](QUICK_REFERENCE.md)** - Fast access to common tasks and information
 
 Coming soon:
@@ -115,6 +117,8 @@ We welcome documentation improvements! To contribute:
 
 ### Looking for...
 
+- **GitHub Pages 404 error fix?** → [guides/GITHUB_PAGES_404_FIX.md](guides/GITHUB_PAGES_404_FIX.md) ⚠️
+- **Complete Pages setup?** → [../GITHUB_PAGES_SETUP_GUIDE.md](../GITHUB_PAGES_SETUP_GUIDE.md) 📖
 - **Theme colors and styling?** → [THEMES.md](THEMES.md)
 - **How to contribute?** → [CONTRIBUTING.md](CONTRIBUTING.md)
 - **Website technical status?** → [guides/WEBSITE_STATUS_REPORT.md](guides/WEBSITE_STATUS_REPORT.md)
