@@ -97,16 +97,33 @@ Vgen Solutions offers a comprehensive suite of digital services:
 
 The website is deployed using GitHub Pages and serves from the **root directory**.
 
+### ⚠️ GitHub Pages Setup Required
+
+**If you're seeing a 404 error**, please follow the setup guide:
+
+📖 **[GITHUB PAGES SETUP GUIDE](GITHUB_PAGES_SETUP_GUIDE.md)** 📖
+
+The guide covers:
+- Enabling GitHub Pages for private/public repositories
+- Configuring the deployment source
+- Setting up custom domain (vgensolutions.com)
+- DNS configuration
+- Troubleshooting common issues
+
 ### Important Configuration Notes
 - The site must serve from the root directory (where `index.html` is located)
 - CNAME file should **only** exist in the root directory, not in `/docs`
 - The `.nojekyll` file prevents Jekyll processing
 - GitHub Actions workflow deploys the entire repository to GitHub Pages
+- **Repository must be PUBLIC or require GitHub Pro/Team for private repo Pages hosting**
 
 ### GitHub Pages Configuration
-- **Source**: Root directory (`/`)
+- **Source**: GitHub Actions (NOT "Deploy from a branch")
 - **Custom Domain**: vgensolutions.com (configured via CNAME)
 - **Deployment**: Automatic via GitHub Actions on push to `main` branch
+- **Access URLs**:
+  - GitHub Pages: https://vgensolu.github.io/Vgensolutions/
+  - Custom Domain: https://vgensolutions.com (requires DNS setup)
 
 ## 🔧 Cache & Performance Optimization
 
