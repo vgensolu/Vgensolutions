@@ -3840,6 +3840,82 @@
     let vgenConversations = [];
     let vgenIsLoading = false;
     let vgenIsTyping = false;
+    let vgenTypingSoundInterval = null;
+    
+    // Web Audio API for typing sound
+    let audioContext = null;
+    
+    function initAudioContext() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioContext;
+    }
+    
+    function playTypingSound() {
+      try {
+        const ctx = initAudioContext();
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        
+        // Create a subtle typing sound similar to WhatsApp
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(800, ctx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.02);
+        
+        gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        
+        oscillator.start(ctx.currentTime);
+        oscillator.stop(ctx.currentTime + 0.05);
+      } catch (error) {
+        console.log('Audio not supported:', error);
+      }
+    }
+    
+    function startTypingSound() {
+      if (vgenTypingSoundInterval) return;
+      
+      // Play typing sound at intervals to simulate typing
+      playTypingSound();
+      vgenTypingSoundInterval = setInterval(() => {
+        playTypingSound();
+      }, 150); // Play sound every 150ms
+    }
+    
+    function stopTypingSound() {
+      if (vgenTypingSoundInterval) {
+        clearInterval(vgenTypingSoundInterval);
+        vgenTypingSoundInterval = null;
+      }
+    }
+    
+    function playMessageDropSound() {
+      try {
+        const ctx = initAudioContext();
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        
+        // Create a subtle notification sound when message is sent/received
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(600, ctx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0.15, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        
+        oscillator.start(ctx.currentTime);
+        oscillator.stop(ctx.currentTime + 0.15);
+      } catch (error) {
+        console.log('Audio not supported:', error);
+      }
+    }
 
     // Comprehensive Vgen Solutions knowledge base
     const vgenKnowledgeBase = {
@@ -4200,6 +4276,10 @@
 
       vgenChatMessagesContainer.appendChild(messageEl);
       vgenChatMessagesContainer.scrollTop = vgenChatMessagesContainer.scrollHeight;
+      
+      // Play message drop sound when bot message appears
+      playMessageDropSound();
+      
       return messageEl;
     }
 
@@ -4245,6 +4325,9 @@
 
       vgenChatMessagesContainer.appendChild(typingEl);
       vgenChatMessagesContainer.scrollTop = vgenChatMessagesContainer.scrollHeight;
+      
+      // Start typing sound
+      startTypingSound();
     }
 
     function vgenHideTypingIndicator() {
@@ -4253,6 +4336,9 @@
         typingEl.remove();
       }
       vgenIsTyping = false;
+      
+      // Stop typing sound
+      stopTypingSound();
     }
 
     // Global function for button interactions
