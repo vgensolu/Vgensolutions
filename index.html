@@ -2002,17 +2002,213 @@
 
     .vgen-chat-body {
       flex: 1;
-      overflow: hidden;
-      padding: 0;
-      background: rgba(20, 20, 20, 0.95);
+      overflow-y: auto;
+      padding: 16px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .vgen-chat-window .chat-container-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
       position: relative;
     }
 
-    .vgen-chat-iframe {
+    .vgen-chat-window .chat-container-inner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(237, 168, 0, 0.05) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .vgen-chat-window .message {
+      margin-bottom: 16px;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .vgen-chat-window .message.user {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .vgen-chat-window .message.bot {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .vgen-chat-window .message-bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      word-wrap: break-word;
+      word-break: break-word;
+      position: relative;
+    }
+
+    .vgen-chat-window .message.user .message-bubble {
+      background: linear-gradient(135deg, #EDA800 0%, #daa520 100%);
+      color: #0a0a0a;
+      border-bottom-right-radius: 6px;
+    }
+
+    .vgen-chat-window .message.bot .message-bubble {
+      background: #1a1a1a;
+      color: #f5e6d3;
+      border: 1px solid #daa520;
+      border-bottom-left-radius: 6px;
+      box-shadow: 0 2px 8px rgba(237, 168, 0, 0.2);
+    }
+
+    .vgen-chat-window .message-text {
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .vgen-chat-window .message-time {
+      font-size: 11px;
+      opacity: 0.7;
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    .vgen-chat-window .message.bot .message-time {
+      text-align: left;
+    }
+
+    .vgen-chat-window .quick-replies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .vgen-chat-window .quick-reply {
+      background: #1a1a1a;
+      border: 1px solid #daa520;
+      border-radius: 20px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #f5e6d3;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .vgen-chat-window .quick-reply:hover {
+      background: linear-gradient(135deg, #EDA800 0%, #daa520 100%);
+      color: #0a0a0a;
+      border-color: #ffd700;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(237, 168, 0, 0.3);
+    }
+
+    .vgen-chat-window .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: #1a1a1a;
+      border: 1px solid #daa520;
+      border-radius: 18px;
+      border-bottom-left-radius: 6px;
+      max-width: 80px;
+      box-shadow: 0 2px 8px rgba(237, 168, 0, 0.2);
+    }
+
+    .vgen-chat-window .typing-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .vgen-chat-window .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: #daa520;
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+
+    .vgen-chat-window .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .vgen-chat-window .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: translateY(0);
+      }
+      30% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .vgen-chat-window .bot-avatar {
+      width: 32px;
+      height: 32px;
+      background: #EDA800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a0a0a;
+      font-size: 16px;
+      margin-right: 8px;
+      flex-shrink: 0;
+      padding: 4px;
+      box-shadow: 0 2px 8px rgba(237, 168, 0, 0.4);
+    }
+
+    .vgen-chat-window .bot-avatar img {
       width: 100%;
       height: 100%;
-      border: none;
-      display: block;
+      object-fit: contain;
+    }
+
+    .vgen-chat-window .error-message {
+      background: #fef2f2;
+      color: #dc2626;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      border: 1px solid #fecaca;
     }
 
     .chat-message {
@@ -3045,8 +3241,34 @@
      Vgen Solutions Assistant
      <button id="vgen-chat-close" style="margin-left: auto; background: none; border: none; color: #000000; font-size: 1.5rem; cursor: pointer; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='none'">×</button>
     </div>
-    <div class="vgen-chat-body">
-     <iframe src="chatbox-vgen.html" class="vgen-chat-iframe" title="Vgen Solutions Assistant" id="vgen-chat-iframe"></iframe>
+    <div class="vgen-chat-body" id="vgenChatMessagesContainer">
+     <div class="chat-container-inner">
+      <div class="message bot">
+       <div class="bot-avatar">
+        <img src="/media/logos/logo.png" alt="Vgen Logo">
+       </div>
+       <div class="message-bubble">
+        <p class="message-text">Welcome to Vgen Solutions! We focus on small and medium businesses, providing dedicated support to help you grow together. How can I assist you today?</p>
+        <div class="quick-replies" id="vgenMainButtons">
+         <div class="quick-reply" onclick="handleVgenButtonClick('business_info', 'Tell me about Vgen Solutions')">
+          Business Info
+         </div>
+         <div class="quick-reply" onclick="handleVgenButtonClick('services_menu', 'What services do you offer?')">
+          Services
+         </div>
+         <div class="quick-reply" onclick="handleVgenButtonClick('products_menu', 'What products do you have?')">
+          Products
+         </div>
+         <div class="quick-reply" onclick="handleVgenButtonClick('faqs_menu', 'I have questions')">
+          FAQs
+         </div>
+         <div class="quick-reply" onclick="handleVgenButtonClick('contact', 'How can I contact you?')">
+          Contact Us
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
     </div>
    </div>
   </div><!-- Scroll to Top --> <button class="scroll-top" id="scroll-top">↑</button>
@@ -3586,6 +3808,428 @@
         window.scrollTo(0, scrollPosition);
       }
     });
+
+    // Vgen Chat Bot Functionality
+    let vgenConversations = [];
+    let vgenIsLoading = false;
+    let vgenIsTyping = false;
+
+    // Comprehensive Vgen Solutions knowledge base
+    const vgenKnowledgeBase = {
+      'business_info': {
+        response: "About Vgen Solutions<br><br>Vgen Solutions is a digital marketing and technology solutions provider specializing in helping small and medium businesses succeed online. We offer professional services at affordable prices, with flexible solutions tailored to your budget.<br><br><strong>Location:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines (Operating remotely to support clients globally)<br><br><strong>Contact Information:</strong><br>• Email: contact@vgensolutions.com<br>• Phone: +60 11-2301 4446<br><br><strong>Business Hours:</strong> We operate remotely and are available for consultations by appointment. Contact us to schedule a meeting at your convenience.",
+        buttons: [
+          { text: "Services", action: "services_menu" },
+          { text: "Products", action: "products_menu" },
+          { text: "FAQs", action: "faqs_menu" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'services_menu': {
+        response: "Our Services<br><br>What would you like to know about?",
+        buttons: [
+          { text: "Email Setup & Management", action: "service_email" },
+          { text: "Web Development", action: "service_web" },
+          { text: "Digital Advertising", action: "service_ads" },
+          { text: "Growth Strategy", action: "service_growth" },
+          { text: "AI Content Generation", action: "service_ai" },
+          { text: "Headless Automations", action: "service_automation" },
+          { text: "HR Solutions", action: "service_hr" },
+          { text: "Advanced HTML Integration", action: "service_html" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_email': {
+        response: "Email Setup & Management<br><br>Professional email solutions with custom domains and advanced security.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_web': {
+        response: "Web Development<br><br>Custom websites and web applications built with modern technologies.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_ads': {
+        response: "Digital Advertising<br><br>Strategic ad campaigns across Meta, Google, and other platforms.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_growth': {
+        response: "Growth Strategy<br><br>Data-driven strategies to scale your business and increase revenue.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_ai': {
+        response: "AI Content Generation<br><br>Automated content creation powered by advanced AI technology.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_automation': {
+        response: "Headless Automations<br><br>Intelligent browser automation for repetitive tasks and workflows.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_hr': {
+        response: "HR Solutions<br><br>Expert local and international labor law consultation and comprehensive HR documentation services.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'service_html': {
+        response: "Advanced HTML Integration<br><br>Professional email HTML templates and custom web integration with responsive designs, formatting, and seamless image integration.",
+        buttons: [
+          { text: "View All Services", action: "services_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'products_menu': {
+        response: "Our Products<br><br>What would you like to learn about?",
+        buttons: [
+          { text: "Custom Website Packages", action: "product_websites" },
+          { text: "Email Marketing Templates", action: "product_email_templates" },
+          { text: "Automation Bundles", action: "product_automation" },
+          { text: "Digital Marketing Courses", action: "product_courses" },
+          { text: "HR Documentation Templates", action: "product_hr_docs" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'product_websites': {
+        response: "Custom Website Packages<br><br>Professional website development packages tailored to your business needs, from landing pages to full e-commerce solutions.",
+        buttons: [
+          { text: "View All Products", action: "products_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'product_email_templates': {
+        response: "Email Marketing Templates<br><br>Pre-designed, customizable email templates for newsletters, promotions, and automated campaigns.",
+        buttons: [
+          { text: "View All Products", action: "products_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'product_automation': {
+        response: "Automation Bundles<br><br>Ready-to-deploy automation solutions for common business tasks like data entry, reporting, and social media management.",
+        buttons: [
+          { text: "View All Products", action: "products_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'product_courses': {
+        response: "Digital Marketing Courses<br><br>Self-paced training courses and resources to help you master digital marketing strategies for your business.",
+        buttons: [
+          { text: "View All Products", action: "products_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'product_hr_docs': {
+        response: "HR Documentation Templates<br><br>Professional HR templates including employment contracts, handbooks, and policy documents compliant with labor laws.",
+        buttons: [
+          { text: "View All Products", action: "products_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faqs_menu': {
+        response: "Frequently Asked Questions<br><br>What would you like to know?",
+        buttons: [
+          { text: "What services do you offer?", action: "faq_1" },
+          { text: "Do you work with small businesses?", action: "faq_2" },
+          { text: "How is your pricing structured?", action: "faq_3" },
+          { text: "Can you work within my budget?", action: "faq_4" },
+          { text: "More Questions", action: "faqs_menu_2" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faqs_menu_2': {
+        response: "More Frequently Asked Questions<br><br>What would you like to know?",
+        buttons: [
+          { text: "How long does a project take?", action: "faq_5" },
+          { text: "Do I need technical knowledge?", action: "faq_6" },
+          { text: "Professional email benefits?", action: "faq_7" },
+          { text: "Website improvement help?", action: "faq_8" },
+          { text: "Back to FAQs", action: "faqs_menu" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_1': {
+        response: "What services do you offer?<br><br>We offer email setup & management, custom web development, digital advertising (Meta & Google Ads), growth strategy consulting, AI content generation, and headless browser automation solutions.",
+        buttons: [
+          { text: "View Services", action: "services_menu" },
+          { text: "More FAQs", action: "faqs_menu" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_2': {
+        response: "Do you work with small businesses and startups?<br><br>Absolutely! Vgen Solutions specializes in supporting small and medium businesses. We understand budget constraints and work with you to create affordable solutions that don't compromise on quality.",
+        buttons: [
+          { text: "More FAQs", action: "faqs_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_3': {
+        response: "How is your pricing structured?<br><br>We believe affordability is crucial for growing businesses. Our pricing is completely flexible and customized to your budget. We'll work with you to find solutions that fit your financial situation without sacrificing quality or results.",
+        buttons: [
+          { text: "More FAQs", action: "faqs_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_4': {
+        response: "Can you work within my limited budget?<br><br>Yes! We're here to help small businesses succeed, regardless of budget size. We'll find creative ways to deliver maximum value within your constraints.",
+        buttons: [
+          { text: "More FAQs", action: "faqs_menu" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_5': {
+        response: "How long does a typical project take?<br><br>Timelines vary by project: Email setups take 1-3 days, websites 2-8 weeks, ad campaigns launch within 1 week, and automation projects range from 1-4 weeks.",
+        buttons: [
+          { text: "More FAQs", action: "faqs_menu_2" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_6': {
+        response: "Do I need technical knowledge to work with you?<br><br>Not at all! We handle all the technical aspects and explain everything in simple terms. We'll guide you through every step.",
+        buttons: [
+          { text: "More FAQs", action: "faqs_menu_2" },
+          { text: "Contact Us", action: "contact" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_7': {
+        response: "What makes your email setup different from free email services?<br><br>Professional email with your own domain (you@yourbusiness.com) builds trust and credibility. We set up secure, reliable email systems with advanced features and spam protection.",
+        buttons: [
+          { text: "More FAQs", action: "faqs_menu_2" },
+          { text: "Email Setup Service", action: "service_email" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'faq_8': {
+        response: "Can you help if I already have a website that needs improvement?<br><br>Absolutely! We can audit your existing website, identify issues, and make improvements. Whether it's speed optimization, design updates, or adding new features—we'll enhance what you have.",
+        buttons: [
+          { text: "More FAQs", action: "faqs_menu_2" },
+          { text: "Web Development Service", action: "service_web" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+      'contact': {
+        response: "Contact Information<br><br><strong>Email:</strong> contact@vgensolutions.com<br><strong>Phone:</strong> +60 11-2301 4446<br><strong>Address:</strong> Subec Pagudpud Ilocos Norte 2919 Philippines<br><br>We typically respond within 24 hours during business days. Operating remotely to support clients globally.",
+        buttons: [
+          { text: "Business Info", action: "business_info" },
+          { text: "Services", action: "services_menu" },
+          { text: "Back to Main Menu", action: "main" }
+        ]
+      },
+    };
+
+    const vgenChatMessagesContainer = document.getElementById('vgenChatMessagesContainer');
+
+    function vgenFormatTime(timestamp) {
+      const date = new Date(timestamp);
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function vgenShowError(message) {
+      const errorEl = document.createElement('div');
+      errorEl.className = 'error-message';
+      errorEl.textContent = message;
+      vgenChatMessagesContainer.appendChild(errorEl);
+
+      setTimeout(() => {
+        if (errorEl.parentNode) {
+          errorEl.remove();
+        }
+      }, 5000);
+    }
+
+    async function vgenSaveConversation(category, question, answer) {
+      if (vgenConversations.length >= 999) {
+        vgenShowError('Conversation limit reached. Please contact support directly.');
+        return;
+      }
+
+      const conversation = {
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+        question: question,
+        answer: answer.replace(/<br>/g, ' '),
+        timestamp: new Date().toISOString(),
+        customer_name: 'Vgen Solutions Visitor',
+        resolved: true
+      };
+
+      if (window.dataSdk) {
+        const result = await window.dataSdk.create(conversation);
+        if (!result.isOk) {
+          console.error('Failed to save conversation');
+        }
+      }
+    }
+
+    async function handleVgenButtonClick(action, userMessage) {
+      if (vgenIsLoading) return;
+      
+      // Add user message
+      vgenAddMessage(userMessage, true);
+      
+      // Show typing indicator
+      vgenShowTypingIndicator();
+      
+      // Wait for realistic response time
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Hide typing indicator
+      vgenHideTypingIndicator();
+      
+      // Handle the action
+      if (action === 'main') {
+        vgenShowMainMenu();
+      } else {
+        vgenShowResponse(action, userMessage);
+      }
+    }
+
+    function vgenShowMainMenu() {
+      const mainMenuMessage = `
+        <p class="message-text">Welcome to Vgen Solutions! We focus on small and medium businesses, providing dedicated support to help you grow together. How can I assist you today?</p>
+        <div class="quick-replies">
+          <div class="quick-reply" onclick="handleVgenButtonClick('business_info', 'Tell me about Vgen Solutions')">Business Info</div>
+          <div class="quick-reply" onclick="handleVgenButtonClick('services_menu', 'What services do you offer?')">Services</div>
+          <div class="quick-reply" onclick="handleVgenButtonClick('products_menu', 'What products do you have?')">Products</div>
+          <div class="quick-reply" onclick="handleVgenButtonClick('faqs_menu', 'I have questions')">FAQs</div>
+          <div class="quick-reply" onclick="handleVgenButtonClick('contact', 'How can I contact you?')">Contact Us</div>
+        </div>
+      `;
+      
+      vgenAddBotMessage(mainMenuMessage);
+    }
+
+    function vgenShowResponse(action, userMessage) {
+      const category = vgenKnowledgeBase[action];
+      if (!category) return;
+
+      let response = category.response;
+
+      // Create buttons HTML
+      let buttonsHtml = '';
+      if (category.buttons && category.buttons.length > 0) {
+        buttonsHtml = '<div class="quick-replies">';
+        category.buttons.forEach(button => {
+          const cleanText = button.text.replace(/[🏠📧🕒⚙️📦↩️💳👤🔧📋📞🔐🗑️🔄🐛💼📢🤖📈🎨🚀🔍📺💼📌🎵⚡📊📝🎯🏆📘💻📌🎵🎨🗣️⭐💻👥]/g, '').trim();
+          buttonsHtml += `<div class="quick-reply" onclick="handleVgenButtonClick('${button.action}', '${cleanText}')">${cleanText}</div>`;
+        });
+        buttonsHtml += '</div>';
+      }
+
+      const fullMessage = `
+        <p class="message-text">${response}</p>
+        ${buttonsHtml}
+      `;
+
+      vgenAddBotMessage(fullMessage);
+      
+      // Save conversation
+      vgenSaveConversation(action, userMessage, response.replace(/<br>/g, '\n'));
+    }
+
+    function vgenAddBotMessage(htmlContent) {
+      const messageEl = document.createElement('div');
+      messageEl.className = 'message bot';
+      
+      messageEl.innerHTML = `
+        <div class="bot-avatar"><img src="/media/logos/logo.png" alt="Vgen Logo"></div>
+        <div class="message-bubble">
+          ${htmlContent}
+          <div class="message-time">${vgenFormatTime(new Date())}</div>
+        </div>
+      `;
+
+      vgenChatMessagesContainer.appendChild(messageEl);
+      vgenChatMessagesContainer.scrollTop = vgenChatMessagesContainer.scrollHeight;
+      return messageEl;
+    }
+
+    function vgenAddMessage(text, isUser = false) {
+      const messageEl = document.createElement('div');
+      messageEl.className = `message ${isUser ? 'user' : 'bot'}`;
+      
+      const bubbleContent = isUser ? 
+        `<div class="message-bubble">
+          <p class="message-text">${text}</p>
+          <div class="message-time">${vgenFormatTime(new Date())}</div>
+        </div>` :
+        `<div class="bot-avatar"><img src="/media/logos/logo.png" alt="Vgen Logo"></div>
+        <div class="message-bubble">
+          <p class="message-text">${text}</p>
+          <div class="message-time">${vgenFormatTime(new Date())}</div>
+        </div>`;
+
+      messageEl.innerHTML = bubbleContent;
+      vgenChatMessagesContainer.appendChild(messageEl);
+      vgenChatMessagesContainer.scrollTop = vgenChatMessagesContainer.scrollHeight;
+      return messageEl;
+    }
+
+    function vgenShowTypingIndicator() {
+      if (vgenIsTyping) return;
+      vgenIsTyping = true;
+      
+      const typingEl = document.createElement('div');
+      typingEl.className = 'message bot';
+      typingEl.id = 'vgen-typing-indicator';
+      
+      typingEl.innerHTML = `
+        <div class="bot-avatar"><img src="/media/logos/logo.png" alt="Vgen Logo"></div>
+        <div class="typing-indicator">
+          <div class="typing-dots">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      `;
+
+      vgenChatMessagesContainer.appendChild(typingEl);
+      vgenChatMessagesContainer.scrollTop = vgenChatMessagesContainer.scrollHeight;
+    }
+
+    function vgenHideTypingIndicator() {
+      const typingEl = document.getElementById('vgen-typing-indicator');
+      if (typingEl) {
+        typingEl.remove();
+      }
+      vgenIsTyping = false;
+    }
+
+    // Global function for button interactions
+    window.handleVgenButtonClick = handleVgenButtonClick;
 
     // FAQ items
     document.querySelectorAll('.faq-item').forEach(item => {
