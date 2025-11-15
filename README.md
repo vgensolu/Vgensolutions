@@ -93,6 +93,21 @@ Vgen Solutions offers a comprehensive suite of digital services:
 - **Progressive Web App**: Service worker for offline support and caching
 - **Cache Management**: Built-in cache clearing functionality
 
+## 🚀 Deployment
+
+The website is deployed using GitHub Pages and serves from the **root directory**.
+
+### Important Configuration Notes
+- The site must serve from the root directory (where `index.html` is located)
+- CNAME file should **only** exist in the root directory, not in `/docs`
+- The `.nojekyll` file prevents Jekyll processing
+- GitHub Actions workflow deploys the entire repository to GitHub Pages
+
+### GitHub Pages Configuration
+- **Source**: Root directory (`/`)
+- **Custom Domain**: vgensolutions.com (configured via CNAME)
+- **Deployment**: Automatic via GitHub Actions on push to `main` branch
+
 ## 🔧 Cache & Performance Optimization
 
 The website includes advanced cache management features:
