@@ -3234,10 +3234,11 @@
   </div><!-- Vgen Chat Bot Widget -->
   <div class="vgen-chat-widget">
    <button class="vgen-chat-button" id="vgen-chat-button">
-    <img src="/media/logos/logo-colored.png" alt="Vgen Logo">
+    <img src="/media/logos/logo.png" alt="Vgen Logo">
    </button>
    <div class="vgen-chat-window" id="vgen-chat-window">
     <div class="vgen-chat-header">
+     <img src="/media/logos/logo.png" alt="Vgen Logo">
      Vgen Solutions Assistant
      <button id="vgen-chat-close" style="margin-left: auto; background: none; border: none; color: #000000; font-size: 1.5rem; cursor: pointer; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='none'">×</button>
     </div>
@@ -3776,14 +3777,27 @@
     vgenChatButton.addEventListener('click', () => {
       const isActive = vgenChatWindow.classList.toggle('active');
       if (isActive) {
+        // Save current scroll position
         scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Get scrollbar width to prevent layout shift
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        
         whatsappBackdrop.classList.add('active');
         document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = '0px';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollPosition}px`;
+        document.body.style.width = '100%';
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
       } else {
         whatsappBackdrop.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
         document.body.style.paddingRight = '';
+        
+        // Restore scroll position
         window.scrollTo(0, scrollPosition);
       }
     });
@@ -3793,7 +3807,12 @@
       vgenChatWindow.classList.remove('active');
       whatsappBackdrop.classList.remove('active');
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.paddingRight = '';
+      
+      // Restore scroll position
       window.scrollTo(0, scrollPosition);
     });
     
@@ -3804,7 +3823,12 @@
         whatsappWindow.classList.remove('active');
         whatsappBackdrop.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
         document.body.style.paddingRight = '';
+        
+        // Restore scroll position
         window.scrollTo(0, scrollPosition);
       }
     });
